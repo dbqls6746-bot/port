@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>최유빈 | 풀스택 개발자 포트폴리오</title>
+  <meta name="description" content="Frontend와 Backend를 다룰 줄 알고 계속해서 배우고 성장하는 풀스택 개발자 최유빈의 포트폴리오입니다.">
+
+  <!-- Pretendard Web Font -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              500: '#3b82f6',
+              600: '#2563eb', // 포인트 블루
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a', // 딥 네이비
+              dark: '#0f172a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 커스텀 스크롤바 */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    /* Scrollspy Active Link */
+    .nav-link.active {
+      color: #2563eb;
+      font-weight: 700;
+      background-color: #eff6ff;
+      border-left: 3px solid #2563eb;
+      padding-left: 0.85rem;
+    }
+
+    /* Timeline bullet line */
+    .timeline-line::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 19px;
+      width: 2px;
+      background-color: #e2e8f0;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+  <!-- ============================================== -->
+  <!-- 모바일 상단 고정 헤더 (Desktop 에서는 숨김) -->
+  <!-- ============================================== -->
+  <header class="lg:hidden sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 px-4 py-3 flex items-center justify-between shadow-sm">
+    <a href="#home" class="flex items-center gap-2.5">
+      <div class="w-8 h-8 rounded-lg bg-brand-900 text-white flex items-center justify-center font-bold text-sm shadow">
+        YB
+      </div>
+      <span class="font-bold text-slate-900 text-base tracking-tight">최유빈 <span class="text-xs text-brand-600 font-medium">Portfolio</span></span>
+    </a>
+    
+    <button id="mobile-menu-btn" class="p-2 text-slate-600 hover:text-brand-600 hover:bg-slate-100 rounded-lg transition-colors" aria-label="메뉴 열기">
+      <i class="fa-solid fa-bars text-xl"></i>
+    </button>
+  </header>
+
+  <!-- 모바일 네비게이션 드롭다운 오버레이 -->
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-slate-900/50 z-40 hidden lg:hidden transition-opacity"></div>
+  <nav id="mobile-menu" class="fixed top-0 right-0 bottom-0 w-72 bg-white z-50 shadow-2xl p-6 transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden flex flex-col justify-between">
+    <div>
+      <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+        <span class="font-bold text-slate-900 text-lg">메뉴</span>
+        <button id="mobile-menu-close-btn" class="p-2 text-slate-400 hover:text-slate-700 rounded-lg" aria-label="메뉴 닫기">
+          <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+      </div>
+      <ul class="mt-6 space-y-2">
+        <li><a href="#home" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 text-slate-700 hover:bg-slate-100 rounded-lg font-medium transition"><i class="fa-solid fa-house w-5 text-slate-400"></i>Home</a></li>
+        <li><a href="#about" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 text-slate-700 hover:bg-slate-100 rounded-lg font-medium transition"><i class="fa-solid fa-user w-5 text-slate-400"></i>About Me</a></li>
+        <li><a href="#skills" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 text-slate-700 hover:bg-slate-100 rounded-lg font-medium transition"><i class="fa-solid fa-layer-group w-5 text-slate-400"></i>Skills</a></li>
+        <li><a href="#projects" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 text-slate-700 hover:bg-slate-100 rounded-lg font-medium transition"><i class="fa-solid fa-laptop-code w-5 text-slate-400"></i>Projects</a></li>
+        <li><a href="#experience" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 text-slate-700 hover:bg-slate-100 rounded-lg font-medium transition"><i class="fa-solid fa-timeline w-5 text-slate-400"></i>Experience & Edu</a></li>
+        <li><a href="#contact" class="mobile-nav-link flex items-center gap-3 px-3 py-2.5 text-slate-700 hover:bg-slate-100 rounded-lg font-medium transition"><i class="fa-solid fa-envelope w-5 text-slate-400"></i>Contact</a></li>
+      </ul>
+    </div>
+    <div class="pt-6 border-t border-slate-100 text-center">
+      <a href="#contact" class="mobile-nav-link w-full inline-block py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-lg font-medium text-sm transition shadow-sm">
+        연락하기
+      </a>
+    </div>
+  </nav>
+
+  <!-- ============================================== -->
+  <!-- 데스크톱 좌측 고정 사이드바 (Sidebar) -->
+  <!-- ============================================== -->
+  <aside class="hidden lg:flex fixed top-0 left-0 h-screen w-72 bg-white border-r border-slate-200 flex-col justify-between p-6 z-30 shadow-[1px_0_10px_rgba(0,0,0,0.03)]">
+    <div>
+      <!-- 프로필 헤더 -->
+      <div class="flex flex-col items-center text-center pb-6 border-b border-slate-100">
+        <div class="relative w-28 h-28 mb-4">
+          <img src="./profile.png" 
+               alt="최유빈 프로필 사진" 
+               onerror="this.src='https://ui-avatars.com/api/?name=%EC%B5%9C%EC%9C%A0%EB%B9%88&background=1e3a8a&color=fff&size=200'"
+               class="w-full h-full object-cover object-top rounded-2xl shadow-md border-2 border-white ring-2 ring-brand-100">
+        </div>
+        <h1 class="text-xl font-bold text-slate-900 tracking-tight">최유빈</h1>
+        <p class="text-xs font-semibold uppercase tracking-wider text-brand-600 mt-1">Full-stack Developer</p>
+        <p class="text-xs text-slate-500 mt-1">Frontend & Backend</p>
+      </div>
+
+      <!-- 네비게이션 메뉴 (Scrollspy 타겟) -->
+      <nav class="mt-6">
+        <ul class="space-y-1.5" id="desktop-nav">
+          <li>
+            <a href="#home" class="nav-link active flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-all">
+              <i class="fa-solid fa-house w-5 text-center text-slate-400"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="#about" class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-all">
+              <i class="fa-solid fa-user w-5 text-center text-slate-400"></i>
+              <span>About Me</span>
+            </a>
+          </li>
+          <li>
+            <a href="#skills" class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-all">
+              <i class="fa-solid fa-layer-group w-5 text-center text-slate-400"></i>
+              <span>Skills</span>
+            </a>
+          </li>
+          <li>
+            <a href="#projects" class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-all">
+              <i class="fa-solid fa-laptop-code w-5 text-center text-slate-400"></i>
+              <span>Projects</span>
+            </a>
+          </li>
+          <li>
+            <a href="#experience" class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-all">
+              <i class="fa-solid fa-timeline w-5 text-center text-slate-400"></i>
+              <span>Experience & Edu</span>
+            </a>
+          </li>
+          <li>
+            <a href="#contact" class="nav-link flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-all">
+              <i class="fa-solid fa-envelope w-5 text-center text-slate-400"></i>
+              <span>Contact</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- 사이드바 하단 정보 및 SNS 링크 -->
+    <div class="pt-4 border-t border-slate-100">
+      <div class="flex items-center justify-center gap-3 mb-3 text-slate-500">
+        <a href="https://github.com/dbqls6746-bot?tab=repositories" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center hover:bg-brand-900 hover:text-white transition-colors" title="GitHub">
+          <i class="fa-brands fa-github text-sm"></i>
+        </a>
+        <button onclick="copyEmailToClipboard()" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors" title="이메일 복사">
+          <i class="fa-solid fa-envelope text-xs"></i>
+        </button>
+      </div>
+      <p class="text-[11px] text-center text-slate-400">
+        © 2026 Yubin Choi.<br>All rights reserved.
+      </p>
+    </div>
+  </aside>
+
+  <!-- ============================================== -->
+  <!-- 메인 컨텐츠 영역 (우측 스크롤) -->
+  <!-- ============================================== -->
+  <main class="lg:ml-72 min-h-screen">
+
+    <!-- 1. Home (Hero Section) -->
+    <section id="home" class="min-h-screen flex flex-col justify-center items-center px-6 sm:px-12 lg:px-16 py-20 bg-gradient-to-b from-white via-slate-50 to-white border-b border-slate-200 relative">
+      <div class="max-w-4xl w-full mx-auto flex flex-col items-center justify-center my-auto text-center">
+        <div class="min-h-[140px] sm:min-h-[180px] flex items-center justify-center px-4">
+          <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-snug sm:leading-tight">
+            <span id="hero-typing-text" class="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-brand-900 to-brand-600"></span><span class="inline-block w-0.5 sm:w-1 h-7 sm:h-11 bg-brand-600 ml-1.5 animate-pulse align-middle"></span>
+          </h1>
+        </div>
+      </div>
+
+      <a href="#about" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-slate-400 hover:text-brand-600 transition-colors group" aria-label="About Me 섹션으로 이동">
+        <span class="text-[11px] font-semibold tracking-wider uppercase text-slate-400 group-hover:text-brand-600">Scroll</span>
+        <i class="fa-solid fa-chevron-down text-xs animate-bounce"></i>
+      </a>
+    </section>
+
+    <!-- 2. About Me Section -->
+    <section id="about" class="px-6 sm:px-12 lg:px-16 py-24 bg-white border-b border-slate-200">
+      <div class="max-w-4xl">
+        <div class="flex items-center gap-2 text-brand-600 text-xs font-bold uppercase tracking-wider mb-2">
+          <i class="fa-regular fa-circle-dot"></i> About Me
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-8">
+          동작하는 코드를 넘어, 시스템의 안정성과 흐름을 집요하게 추적합니다.
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <!-- 좌측 2열 소개글 -->
+          <div class="md:col-span-2 space-y-4 text-slate-600 leading-relaxed text-sm sm:text-base">
+            <p>
+              단순히 화면을 띄우거나 기능을 구현하는 데 그치지 않고, <strong class="text-slate-900 font-medium">“데이터가 어떤 흐름을 거쳐 사용자에게 도달하는가?”</strong>에 끊임없이 질문을 던집니다. 현장에서 장비와 설비를 다루며 체득한 <strong class="text-slate-900 font-medium">'작은 오차가 전체 시스템을 멈춘다'</strong>는 기본 원칙을 소프트웨어 아키텍처와 데이터베이스 설계에도 그대로 적용하고 있습니다.
+            </p>
+            <p>
+              백엔드에서는 <strong class="text-slate-900 font-medium">Java와 Spring(Spring Boot, MVC)</strong>을 기반으로 데이터베이스(<strong class="text-slate-900 font-medium">Oracle DB, MyBatis</strong>) 모델링 및 RESTful API 서버 구축에 강점을 두고 있습니다. 여기에 머무르지 않고 <strong class="text-slate-900 font-medium">JSP, Tailwind CSS, React</strong> 등을 적극 활용하여 사용자 경험까지 매끄럽게 연결하는 실용적인 풀스택 개발을 지향합니다.
+            </p>
+            <p>
+              팀 프로젝트에서 <strong class="text-slate-900 font-medium">팀장을 맡아 요구사항 정의부터 DB 스키마 설계, 일정 조율까지</strong> 프로젝트 라이프사이클 전반을 리딩한 경험이 있습니다. 명확한 커뮤니케이션과 꼼꼼한 기록을 통해 동료들과 함께 문제를 해결하고 어제보다 더 견고한 프로덕트를 만드는 과정에 큰 보람을 느낍니다.
+            </p>
+          </div>
+
+          <!-- 우측 1열 빠른 메타 정보 카드 -->
+          <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 flex flex-col justify-between">
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Quick Information</h3>
+            <ul class="space-y-3 text-xs sm:text-sm">
+              <li class="flex justify-between border-b border-slate-200/60 pb-2">
+                <span class="text-slate-500 font-medium">이름</span>
+                <span class="font-semibold text-slate-800">최유빈 (Choi Yubin)</span>
+              </li>
+              <li class="flex justify-between border-b border-slate-200/60 pb-2">
+                <span class="text-slate-500 font-medium">포지션</span>
+                <span class="font-semibold text-brand-700">풀스택 개발자 (Java / Spring & Web)</span>
+              </li>
+              <li class="flex justify-between border-b border-slate-200/60 pb-2">
+                <span class="text-slate-500 font-medium">학력</span>
+                <span class="font-semibold text-slate-800 text-right">한양사이버대 전기전자통신공학부 (재학)</span>
+              </li>
+              <li class="flex justify-between border-b border-slate-200/60 pb-2">
+                <span class="text-slate-500 font-medium">보유 자격</span>
+                <span class="font-semibold text-slate-800 text-right">SQLD, 전기기능사, 자동화설비기능사 등</span>
+              </li>
+              <li class="flex items-center justify-between pt-1">
+                <span class="text-slate-500 font-medium">이메일</span>
+                <button onclick="copyEmailToClipboard()" class="font-semibold text-brand-600 hover:text-brand-800 font-mono text-xs flex items-center gap-1 group transition" title="이메일 복사">
+                  <span>dbqls6746@gmail.com</span>
+                  <i class="fa-regular fa-copy text-[11px] group-hover:scale-110 transition-transform"></i>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3가지 핵심 강점 카드 -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <!-- 카드 1 (Blue 테마) -->
+          <div class="p-5 rounded-xl bg-slate-50/70 border border-slate-200 hover:border-brand-200 hover:bg-blue-50/40 transition">
+            <div class="w-10 h-10 rounded-lg bg-blue-100 text-brand-600 flex items-center justify-center mb-3">
+              <i class="fa-solid fa-database"></i>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm mb-1.5">정밀한 데이터 모델링 & SQL</h4>
+            <p class="text-xs text-slate-600 leading-normal">
+              SQLD 지식을 바탕으로 정규화된 RDBMS 설계와 복잡한 비즈니스 로직을 효율적으로 처리하는 SQL 튜닝 및 MyBatis 연동에 강점이 있습니다.
+            </p>
+          </div>
+
+          <!-- 카드 2 (Emerald 테마) -->
+          <div class="p-5 rounded-xl bg-slate-50/70 border border-slate-200 hover:border-emerald-200 hover:bg-emerald-50/40 transition">
+            <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center mb-3">
+              <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm mb-1.5">엔드투엔드 풀스택 구현력</h4>
+            <p class="text-xs text-slate-600 leading-normal">
+              Spring 백엔드 비즈니스 레이어부터 Tailwind CSS, JSP, React를 활용한 반응형 화면 구현까지 서비스의 전체 흐름을 일관되게 구축합니다.
+            </p>
+          </div>
+
+          <!-- 카드 3 (Purple 테마) -->
+          <div class="p-5 rounded-xl bg-slate-50/70 border border-slate-200 hover:border-purple-200 hover:bg-purple-50/40 transition">
+            <div class="w-10 h-10 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center mb-3">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm mb-1.5">책임감 있는 프로젝트 리딩</h4>
+            <p class="text-xs text-slate-600 leading-normal">
+              팀 프로젝트 총괄 리더로서 요구사항 분석, DB 스키마 설계 표준화, 일정 조율을 주도하며 결과물을 성공적으로 도출하는 협업 감각이 있습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Skills Section -->
+    <section id="skills" class="px-6 sm:px-12 lg:px-16 py-24 bg-slate-50 border-b border-slate-200">
+      <div class="max-w-4xl">
+        <div class="flex items-center gap-2 text-brand-600 text-xs font-bold uppercase tracking-wider mb-2">
+          <i class="fa-regular fa-circle-dot"></i> Tech Stack & Competencies
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-3">
+          핵심 기술 스택 및 실제 활용 역량
+        </h2>
+        <p class="text-slate-600 text-sm mb-10 max-w-2xl leading-relaxed">
+          단순한 문법 암기나 라이브러리 사용을 넘어, 프로덕션 환경에서 발생한 문제를 해결하고 아키텍처를 고도화하는 데 직접 활용한 실무 역량입니다.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- 1) Java / Spring -->
+          <div class="group bg-white p-6 rounded-2xl border border-slate-200 hover:border-brand-500 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 pb-4 mb-5 border-b border-slate-100">
+                <div class="w-11 h-11 rounded-xl bg-brand-900 text-white flex items-center justify-center shadow-md group-hover:scale-110 group-hover:bg-brand-600 transition-all duration-300">
+                  <i class="fa-solid fa-mug-hot text-base"></i>
+                </div>
+                <div>
+                  <h3 class="font-extrabold text-slate-900 text-lg group-hover:text-brand-600 transition-colors">Java / Spring</h3>
+                  <p class="text-[11px] font-medium text-slate-500">객체지향 설계 & 백엔드 프레임워크</p>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <div class="p-3.5 rounded-xl bg-slate-50/80 hover:bg-blue-50/60 border border-slate-200/80 hover:border-brand-300 transition-all duration-200">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="font-bold text-slate-900 text-xs sm:text-sm flex items-center gap-1.5">
+                      <i class="fa-solid fa-leaf text-emerald-600 text-xs"></i> Spring Boot
+                    </span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100/70 text-emerald-800 font-semibold">Core</span>
+                  </div>
+                  <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside leading-relaxed">
+                    <li><strong class="text-slate-800">RESTful API 설계:</strong> 계층형 아키텍처 및 <code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded text-brand-700 font-mono">@ControllerAdvice</code> 기반 예외 규격화</li>
+                    <li>의존성 주입(DI/IoC) 기반 결합도 최소화</li>
+                  </ul>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-50/80 hover:bg-blue-50/60 border border-slate-200/80 hover:border-brand-300 transition-all duration-200">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="font-bold text-slate-900 text-xs sm:text-sm flex items-center gap-1.5">
+                      <i class="fa-solid fa-shield-halved text-brand-600 text-xs"></i> Spring Security
+                    </span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-blue-100/70 text-brand-800 font-semibold">Auth</span>
+                  </div>
+                  <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside leading-relaxed">
+                    <li><strong class="text-slate-800">인증/인가 처리:</strong> JWT 커스텀 필터 체인 기반 무상태(Stateless) 세션 관리</li>
+                    <li>OAuth 2.0 소셜 로그인 연동</li>
+                  </ul>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-50/80 hover:bg-blue-50/60 border border-slate-200/80 hover:border-brand-300 transition-all duration-200">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="font-bold text-slate-900 text-xs sm:text-sm flex items-center gap-1.5">
+                      <i class="fa-solid fa-link text-indigo-600 text-xs"></i> JPA & QueryDSL
+                    </span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-indigo-100/70 text-indigo-800 font-semibold">ORM</span>
+                  </div>
+                  <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside leading-relaxed">
+                    <li>지연 로딩(LAZY) 및 Fetch Join으로 N+1 문제 해결</li>
+                    <li>QueryDSL 컴파일 타임 동적 쿼리 모듈화</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-4 mt-5 border-t border-slate-100">
+              <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2">Key Tags</span>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-1 text-xs rounded-lg bg-slate-100 text-slate-700 font-medium hover:bg-brand-600 hover:text-white transition-all cursor-default">Java 17</span>
+                <span class="px-2.5 py-1 text-xs rounded-lg bg-slate-100 text-slate-700 font-medium hover:bg-brand-600 hover:text-white transition-all cursor-default">Spring Boot 3</span>
+                <span class="px-2.5 py-1 text-xs rounded-lg bg-slate-100 text-slate-700 font-medium hover:bg-brand-600 hover:text-white transition-all cursor-default">JPA</span>
+                <span class="px-2.5 py-1 text-xs rounded-lg bg-slate-100 text-slate-700 font-medium hover:bg-brand-600 hover:text-white transition-all cursor-default">QueryDSL</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2) Database -->
+          <div class="group bg-white p-6 rounded-2xl border border-slate-200 hover:border-brand-500 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 pb-4 mb-5 border-b border-slate-100">
+                <div class="w-11 h-11 rounded-xl bg-slate-800 text-white flex items-center justify-center shadow-md group-hover:scale-110 group-hover:bg-brand-600 transition-all duration-300">
+                  <i class="fa-solid fa-database text-base"></i>
+                </div>
+                <div>
+                  <h3 class="font-extrabold text-slate-900 text-lg group-hover:text-brand-600 transition-colors">Database</h3>
+                  <p class="text-[11px] font-medium text-slate-500">데이터 모델링, 캐시 & 튜닝</p>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <div class="p-3.5 rounded-xl bg-slate-50/80 hover:bg-blue-50/60 border border-slate-200/80 hover:border-brand-300 transition-all duration-200">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="font-bold text-slate-900 text-xs sm:text-sm flex items-center gap-1.5">
+                      <i class="fa-solid fa-table text-blue-600 text-xs"></i> MySQL / PostgreSQL
+                    </span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-blue-100/70 text-blue-800 font-semibold">RDBMS</span>
+                  </div>
+                  <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside leading-relaxed">
+                    <li><strong class="text-slate-800">ERD 모델링:</strong> 정규화 및 조회 최적화 반정규화</li>
+                    <li><strong class="text-slate-800">인덱스 튜닝:</strong> 복합 인덱스 & <code class="text-[11px] bg-slate-100 px-1 py-0.5 rounded text-brand-700 font-mono">EXPLAIN</code> 분석</li>
+                  </ul>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-50/80 hover:bg-blue-50/60 border border-slate-200/80 hover:border-brand-300 transition-all duration-200">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="font-bold text-slate-900 text-xs sm:text-sm flex items-center gap-1.5">
+                      <i class="fa-solid fa-bolt-lightning text-red-600 text-xs"></i> Redis
+                    </span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-red-100/70 text-red-800 font-semibold">In-Memory</span>
+                  </div>
+                  <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside leading-relaxed">
+                    <li><strong class="text-slate-800">캐싱 전략:</strong> Look-Aside 캐싱으로 DB 부하 경감</li>
+                    <li><strong class="text-slate-800">동시성 제어:</strong> Redisson 분산 락 기반 무결성 보장</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-4 mt-5 border-t border-slate-100">
+              <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2">Key Tags</span>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-1 text-xs rounded-lg bg-slate-100 text-slate-700 font-medium hover:bg-brand-600 hover:text-white transition-all cursor-default">ERD 모델링</span>
+                <span class="px-2.5 py-1 text-xs rounded-lg bg-slate-100 text-slate-700 font-medium hover:bg-brand-600 hover:text-white transition-all cursor-default">인덱스 튜닝</span>
+                <span class="px-2.5 py-1 text-xs rounded-lg bg-slate-100 text-slate-700 font-medium hover:bg-brand-600 hover:text-white transition-all cursor-default">Redis 캐싱</span>
+                <span class="px-2.5 py-1 text-xs rounded-lg bg-slate-100 text-slate-700 font-medium hover:bg-brand-600 hover:text-white transition-all cursor-default">분산 락</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3) Infra / Tools -->
+          <div class="group bg-white p-6 rounded-2xl border border-slate-200 hover:border-brand-500 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 pb-4 mb-5 border-b border-slate-100">
+                <div class="w-11 h-11 rounded-xl bg-cyan-700 text-white flex items-center justify-center shadow-md group-hover:scale-110 group-hover:bg-brand-600 transition-all duration-300">
+                  <i class="fa-solid fa-server text-base"></i>
+                </div>
+                <div>
+                  <h3 class="font-extrabold text-slate-900 text-lg group-hover:text-brand-600 transition-colors">Infra / Tools</h3>
+                  <p class="text-[11px] font-medium text-slate-500">컨테이너, 클라우드 & CI/CD</p>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <div class="p-3.5 rounded-xl bg-slate-50/80 hover:bg-blue-50/60 border border-slate-200/80 hover:border-brand-300 transition-all duration-200">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="font-bold text-slate-900 text-xs sm:text-sm flex items-center gap-1.5">
+                      <i class="fa-brands fa-docker text-blue-500 text-sm"></i> Docker
+                    </span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-blue-100/70 text-blue-800 font-semibold">Container</span>
+                  </div>
+                  <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside leading-relaxed">
+                    <li>멀티 스테이지 빌드로 이미지 용량 최적화</li>
+                    <li>Docker Compose 로컬/테스트 환경 표준화</li>
+                  </ul>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-50/80 hover:bg-blue-50/60 border border-slate-200/80 hover:border-brand-300 transition-all duration-200">
+                  <div class="flex items-center justify-between mb-1.5">
+                    <span class="font-bold text-slate-900 text-xs sm:text-sm flex items-center gap-1.5">
+                      <i class="fa-solid fa-code-branch text-purple-600 text-xs"></i> GitHub Actions
+                    </span>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-purple-100/70 text-purple-800 font-semibold">CI/CD</span>
+                  </div>
+                  <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside leading-relaxed">
+                    <li>PR 생성 시 자동 테스트 & 빌드 파이프라인 검증</li>
+                    <li>Nginx 리버스 프록시 연동 무중단 배포</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-4 mt-5 border-t border-slate-100">
+              <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2">Key Tags</span>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-1 text-xs rounded-lg bg-slate-100 text-slate-700 font-medium hover:bg-brand-600 hover:text-white transition-all cursor-default">Docker</span>
+                <span class="px-2.5 py-1 text-xs rounded-lg bg-slate-100 text-slate-700 font-medium hover:bg-brand-600 hover:text-white transition-all cursor-default">GitHub Actions</span>
+                <span class="px-2.5 py-1 text-xs rounded-lg bg-slate-100 text-slate-700 font-medium hover:bg-brand-600 hover:text-white transition-all cursor-default">AWS EC2/S3</span>
+                <span class="px-2.5 py-1 text-xs rounded-lg bg-slate-100 text-slate-700 font-medium hover:bg-brand-600 hover:text-white transition-all cursor-default">Swagger UI</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Projects Section -->
+    <section id="projects" class="px-6 sm:px-12 lg:px-16 py-24 bg-white border-b border-slate-200">
+      <div class="max-w-4xl">
+        <div class="flex items-center gap-2 text-brand-600 text-xs font-bold uppercase tracking-wider mb-2">
+          <i class="fa-regular fa-circle-dot"></i> Selected Works
+        </div>
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+              주요 프로젝트
+            </h2>
+            <p class="text-slate-600 text-sm mt-1">
+              문제를 정의하고 기술을 통해 해결한 대표 프로젝트 목록입니다. 카드를 클릭하면 상세 트러블슈팅을 볼 수 있습니다.
+            </p>
+          </div>
+          <!-- 필터 태그 -->
+          <div class="flex items-center gap-1.5 self-start sm:self-auto bg-slate-100 p-1 rounded-xl text-xs font-medium" id="project-filters">
+            <button class="filter-btn px-3 py-1.5 rounded-lg bg-white text-slate-900 font-semibold shadow-xs" data-filter="all">전체</button>
+            <button class="filter-btn px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition" data-filter="backend">Backend</button>
+            <button class="filter-btn px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition" data-filter="fullstack">Fullstack</button>
+          </div>
+        </div>
+
+        <!-- 프로젝트 카드 그리드 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-7" id="projects-grid">
+
+          <!-- 프로젝트 1 -->
+          <div class="project-card group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col" data-category="backend">
+            <div class="relative overflow-hidden aspect-[16/9] bg-slate-100 cursor-pointer" onclick="openProjectModal('p1')">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=700" 
+                   alt="실시간 대용량 티켓팅 예매 플랫폼" 
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="px-3.5 py-1.5 bg-white/95 rounded-full text-xs font-bold text-slate-900 shadow-md">
+                  <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 상세 보기
+                </span>
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between text-xs text-slate-400 mb-2 font-medium">
+                  <span>2024.03 - 2024.06 (4인 팀 프로젝트)</span>
+                  <span class="px-2 py-0.5 rounded bg-blue-50 text-brand-700 font-semibold text-[11px]">Backend Lead</span>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 group-hover:text-brand-600 transition cursor-pointer" onclick="openProjectModal('p1')">
+                  TicketWave : 동시성 제어 티켓팅 플랫폼
+                </h3>
+                <p class="text-slate-600 text-xs sm:text-sm mt-2 line-clamp-2 leading-relaxed">
+                  순간 접속 트래픽 폭주 상황에서도 좌석 중복 예매를 방지하고 처리량을 개선한 분산 티켓 예매 시스템입니다.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mt-4">
+                  <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">Spring Boot</span>
+                  <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">Redis</span>
+                  <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">Kafka</span>
+                  <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">MySQL</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-5 mt-5 border-t border-slate-100">
+                <button onclick="openProjectModal('p1')" class="text-xs font-semibold text-brand-600 hover:text-brand-800 flex items-center gap-1">
+                  자세히 보기 <i class="fa-solid fa-angle-right text-[10px]"></i>
+                </button>
+                <div class="flex items-center gap-2">
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition" title="GitHub 저장소">
+                    <i class="fa-brands fa-github text-base"></i>
+                  </a>
+                  <a href="https://ticketwave.example.com" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-500 hover:text-brand-600 hover:bg-slate-100 rounded-lg transition" title="데모 사이트">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 프로젝트 2 -->
+          <div class="project-card group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col" data-category="fullstack">
+            <div class="relative overflow-hidden aspect-[16/9] bg-slate-100 cursor-pointer" onclick="openProjectModal('p2')">
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=700" 
+                   alt="B2B 스마트 재고 및 물류 대시보드" 
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="px-3.5 py-1.5 bg-white/95 rounded-full text-xs font-bold text-slate-900 shadow-md">
+                  <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 상세 보기
+                </span>
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between text-xs text-slate-400 mb-2 font-medium">
+                  <span>2023.09 - 2024.01 (기업 프로젝트)</span>
+                  <span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 font-semibold text-[11px]">Full-stack</span>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 group-hover:text-brand-600 transition cursor-pointer" onclick="openProjectModal('p2')">
+                  LogiFlow : 실시간 물류·재고 통합 관제 SaaS
+                </h3>
+                <p class="text-slate-600 text-xs sm:text-sm mt-2 line-clamp-2 leading-relaxed">
+                  다지점 실시간 입출고 트래킹 및 WebSocket 기반 상태 동기화를 제공하는 엔터프라이즈 재고 관리 웹 대시보드입니다.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mt-4">
+                  <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">React</span>
+                  <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">Node.js</span>
+                  <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">PostgreSQL</span>
+                  <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">Tailwind CSS</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-5 mt-5 border-t border-slate-100">
+                <button onclick="openProjectModal('p2')" class="text-xs font-semibold text-brand-600 hover:text-brand-800 flex items-center gap-1">
+                  자세히 보기 <i class="fa-solid fa-angle-right text-[10px]"></i>
+                </button>
+                <div class="flex items-center gap-2">
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition" title="GitHub 저장소">
+                    <i class="fa-brands fa-github text-base"></i>
+                  </a>
+                  <a href="https://logiflow.example.com" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-500 hover:text-brand-600 hover:bg-slate-100 rounded-lg transition" title="데모 사이트">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 프로젝트 3 -->
+          <div class="project-card group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col" data-category="backend">
+            <div class="relative overflow-hidden aspect-[16/9] bg-slate-100 cursor-pointer" onclick="openProjectModal('p3')">
+              <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=700" 
+                   alt="대용량 로그 수집 및 이상 탐지 API" 
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="px-3.5 py-1.5 bg-white/95 rounded-full text-xs font-bold text-slate-900 shadow-md">
+                  <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 상세 보기
+                </span>
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between text-xs text-slate-400 mb-2 font-medium">
+                  <span>2023.03 - 2023.07 (개인 연구 개발)</span>
+                  <span class="px-2 py-0.5 rounded bg-blue-50 text-brand-700 font-semibold text-[11px]">Backend Sole</span>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 group-hover:text-brand-600 transition cursor-pointer" onclick="openProjectModal('p3')">
+                  Sentinell : MSA 환경 분산 추적 & 에러 수집 엔진
+                </h3>
+                <p class="text-slate-600 text-xs sm:text-sm mt-2 line-clamp-2 leading-relaxed">
+                  마이크로서비스 간 HTTP 요청 트레이싱 및 예외 발생 시 실시간 알림을 발송하는 고성능 로그 수집기입니다.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mt-4">
+                  <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">Go</span>
+                  <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">Elasticsearch</span>
+                  <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">Docker</span>
+                  <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">Kibana</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-5 mt-5 border-t border-slate-100">
+                <button onclick="openProjectModal('p3')" class="text-xs font-semibold text-brand-600 hover:text-brand-800 flex items-center gap-1">
+                  자세히 보기 <i class="fa-solid fa-angle-right text-[10px]"></i>
+                </button>
+                <div class="flex items-center gap-2">
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition" title="GitHub 저장소">
+                    <i class="fa-brands fa-github text-base"></i>
+                  </a>
+                  <a href="https://sentinell.example.com" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-500 hover:text-brand-600 hover:bg-slate-100 rounded-lg transition" title="데모 사이트">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 프로젝트 4 -->
+          <div class="project-card group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col" data-category="fullstack">
+            <div class="relative overflow-hidden aspect-[16/9] bg-slate-100 cursor-pointer" onclick="openProjectModal('p4')">
+              <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=700" 
+                   alt="개발자 테크 아티클 큐레이션 커뮤니티" 
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="px-3.5 py-1.5 bg-white/95 rounded-full text-xs font-bold text-slate-900 shadow-md">
+                  <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> 상세 보기
+                </span>
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between text-xs text-slate-400 mb-2 font-medium">
+                  <span>2022.10 - 2023.01 (사이드 프로젝트)</span>
+                  <span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 font-semibold text-[11px]">Full-stack</span>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 group-hover:text-brand-600 transition cursor-pointer" onclick="openProjectModal('p4')">
+                  DevFeed : IT 개발 블로그 자동 피드 & 큐레이션
+                </h3>
+                <p class="text-slate-600 text-xs sm:text-sm mt-2 line-clamp-2 leading-relaxed">
+                  국내외 유명 테크 블로그 RSS를 파싱하여 분야별로 요약하고 뉴스레터를 발행하는 커뮤니티 서비스입니다.
+                </p>
+                <div class="flex flex-wrap gap-1.5 mt-4">
+                  <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">Next.js 14</span>
+                  <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">FastAPI</span>
+                  <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">PostgreSQL</span>
+                  <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">Tailwind CSS</span>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-5 mt-5 border-t border-slate-100">
+                <button onclick="openProjectModal('p4')" class="text-xs font-semibold text-brand-600 hover:text-brand-800 flex items-center gap-1">
+                  자세히 보기 <i class="fa-solid fa-angle-right text-[10px]"></i>
+                </button>
+                <div class="flex items-center gap-2">
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition" title="GitHub 저장소">
+                    <i class="fa-brands fa-github text-base"></i>
+                  </a>
+                  <a href="https://devfeed.example.com" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-500 hover:text-brand-600 hover:bg-slate-100 rounded-lg transition" title="데모 사이트">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Experience & Education Section -->
+    <section id="experience" class="px-6 sm:px-12 lg:px-16 py-24 bg-slate-50 border-b border-slate-200">
+      <div class="max-w-4xl">
+        <div class="flex items-center gap-2 text-brand-600 text-xs font-bold uppercase tracking-wider mb-2">
+          <i class="fa-regular fa-circle-dot"></i> Career & Growth
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-3">
+          경력 및 교육 이력
+        </h2>
+        <p class="text-slate-600 text-sm mb-12 max-w-xl">
+          실제 비즈니스 가치를 창출했던 실무 경력과 전공 및 교육 과정을 시간 역순으로 정리했습니다.
+        </p>
+
+        <div class="relative timeline-line space-y-12 pl-2">
+          <!-- 1) 경력 1 -->
+          <div class="relative pl-10 group">
+            <div class="absolute -left-[1px] top-1.5 w-10 h-10 rounded-full bg-white border-2 border-brand-600 flex items-center justify-center text-brand-600 shadow-sm group-hover:bg-brand-600 group-hover:text-white transition-colors">
+              <i class="fa-solid fa-briefcase text-xs"></i>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                <h3 class="text-base sm:text-lg font-bold text-slate-900">
+                  (주)알파테크놀로지 <span class="text-xs font-normal text-slate-500">| 플랫폼개발팀</span>
+                </h3>
+                <span class="text-xs font-semibold px-2.5 py-1 bg-blue-50 text-brand-700 rounded-full w-fit">
+                  2023.04 - 현재 (재직 중)
+                </span>
+              </div>
+              <p class="text-xs font-medium text-brand-600 mb-4">백엔드 소프트웨어 엔지니어 (매니저)</p>
+              <ul class="space-y-2 text-xs sm:text-sm text-slate-600 list-disc list-inside leading-relaxed">
+                <li><strong class="text-slate-800">이커머스 결제/정산 모듈 재설계:</strong> 단일 장애점(SPOF) 제거 및 Spring Retry/DLQ 도입으로 결제 실패율 0.05% 이하로 감소.</li>
+                <li><strong class="text-slate-800">대규모 상품 검색 쿼리 튜닝:</strong> 복합 인덱스 및 Redis 캐시 적용을 통해 일일 200만 건 요청 기준 평균 지연 320ms → 45ms로 단축.</li>
+                <li><strong class="text-slate-800">CI/CD 무중단 배포 구축:</strong> GitHub Actions 및 Docker/Nginx를 이용한 블루/그린 무중단 배포 파이프라인 완성.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 2) 경력 2 -->
+          <div class="relative pl-10 group">
+            <div class="absolute -left-[1px] top-1.5 w-10 h-10 rounded-full bg-white border-2 border-slate-400 flex items-center justify-center text-slate-500 shadow-sm group-hover:bg-brand-600 group-hover:border-brand-600 group-hover:text-white transition-colors">
+              <i class="fa-solid fa-building text-xs"></i>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                <h3 class="text-base sm:text-lg font-bold text-slate-900">
+                  (주)베타소프트웨어 <span class="text-xs font-normal text-slate-500">| 솔루션개발파트</span>
+                </h3>
+                <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full w-fit">
+                  2022.03 - 2023.03 (1년 1개월)
+                </span>
+              </div>
+              <p class="text-xs font-medium text-slate-700 mb-4">주니어 풀스택 개발자</p>
+              <ul class="space-y-2 text-xs sm:text-sm text-slate-600 list-disc list-inside leading-relaxed">
+                <li><strong class="text-slate-800">사내 ERP 대시보드 리뉴얼:</strong> 레거시 JSP 시스템을 Node.js & React 기반 SPA로 마이그레이션.</li>
+                <li><strong class="text-slate-800">REST API 표준화:</strong> 전사 표준 응답 포맷(Envelope) 및 Swagger 자동화 문서 구축.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 3) 교육 -->
+          <div class="relative pl-10 group">
+            <div class="absolute -left-[1px] top-1.5 w-10 h-10 rounded-full bg-white border-2 border-slate-400 flex items-center justify-center text-slate-500 shadow-sm group-hover:bg-brand-600 group-hover:border-brand-600 group-hover:text-white transition-colors">
+              <i class="fa-solid fa-graduation-cap text-xs"></i>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                <h3 class="text-base sm:text-lg font-bold text-slate-900">
+                  한국소프트웨어인재개발원 <span class="text-xs font-normal text-slate-500">| 백엔드 부트캠프</span>
+                </h3>
+                <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full w-fit">
+                  2021.08 - 2022.02 (6개월 수료)
+                </span>
+              </div>
+              <p class="text-xs font-medium text-slate-700 mb-3">클라우드 기반 자바 풀스택 엔지니어링 과정 (840시간)</p>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Java, Spring Framework, 관계형 데이터베이스, Linux 기반 웹 서버 배포 및 실무형 팀 프로젝트 2회 최우수 프로젝트 선정.
+              </p>
+            </div>
+          </div>
+
+          <!-- 4) 학력 -->
+          <div class="relative pl-10 group">
+            <div class="absolute -left-[1px] top-1.5 w-10 h-10 rounded-full bg-white border-2 border-slate-300 flex items-center justify-center text-slate-400 shadow-sm group-hover:bg-brand-600 group-hover:border-brand-600 group-hover:text-white transition-colors">
+              <i class="fa-solid fa-school text-xs"></i>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                <h3 class="text-base sm:text-lg font-bold text-slate-900">
+                  한국대학교 <span class="text-xs font-normal text-slate-500">| 서울캠퍼스</span>
+                </h3>
+                <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full w-fit">
+                  2016.03 - 2021.02
+                </span>
+              </div>
+              <p class="text-xs font-medium text-slate-700 mb-2">컴퓨터공학과 학사 졸업</p>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                자료구조, 알고리즘, 운영체제, 컴퓨터 네트워크, 데이터베이스 시스템 등 컴퓨터 과학 기초 전공 심화 이수.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Contact Section -->
+    <section id="contact" class="px-6 sm:px-12 lg:px-16 py-24 bg-white">
+      <div class="max-w-4xl">
+        <div class="flex items-center gap-2 text-brand-600 text-xs font-bold uppercase tracking-wider mb-2">
+          <i class="fa-regular fa-circle-dot"></i> Get In Touch
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-3">
+          새로운 기회와 협업을 기다립니다
+        </h2>
+        <p class="text-slate-600 text-sm mb-10 max-w-xl">
+          팀 합류 제안, 기술 자문, 커피챗 등 어떤 이야기든 환영합니다. 아래 이메일 복사 또는 폼을 통해 언제든 연락해주세요!
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+          <div class="md:col-span-2 space-y-4">
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 shadow-xs">
+              <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Direct Email</span>
+              <div class="flex items-center justify-between gap-2 mt-2">
+                <span id="email-address-text" class="font-mono text-sm font-bold text-slate-900 truncate">
+                  dbqls6746@gmail.com
+                </span>
+                <button onclick="copyEmailToClipboard()" class="shrink-0 px-3 py-1.5 bg-white hover:bg-brand-50 border border-slate-300 hover:border-brand-300 text-slate-700 hover:text-brand-600 text-xs font-semibold rounded-lg transition-all flex items-center gap-1 shadow-xs">
+                  <i class="fa-regular fa-copy"></i>
+                  <span>복사</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 shadow-xs space-y-3">
+              <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Channels</span>
+              
+              <a href="https://github.com/dbqls6746-bot?tab=repositories" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-2.5 rounded-xl bg-white border border-slate-200/80 hover:border-slate-400 transition text-xs font-medium text-slate-800">
+                <div class="flex items-center gap-2.5">
+                  <i class="fa-brands fa-github text-base text-slate-900"></i>
+                  <span>GitHub 프로필</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="md:col-span-3 bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-xs">
+            <h3 class="font-bold text-slate-900 text-base mb-1">메시지 보내기</h3>
+            <p class="text-xs text-slate-500 mb-6">폼을 작성하시면 확인 후 24시간 이내에 회신드리겠습니다.</p>
+
+            <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4 text-xs sm:text-sm">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="sender-name" class="block font-semibold text-slate-700 mb-1.5">이름 / 기업명</label>
+                  <input type="text" id="sender-name" required placeholder="홍길동 또는 OO기업" 
+                         class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition">
+                </div>
+                <div>
+                  <label for="sender-email" class="block font-semibold text-slate-700 mb-1.5">회신받을 이메일</label>
+                  <input type="email" id="sender-email" required placeholder="name@example.com" 
+                         class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition">
+                </div>
+              </div>
+
+              <div>
+                <label for="sender-subject" class="block font-semibold text-slate-700 mb-1.5">제목</label>
+                <input type="text" id="sender-subject" required placeholder="예: 백엔드 포지션 채용 제안 드립니다" 
+                       class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition">
+              </div>
+
+              <div>
+                <label for="sender-message" class="block font-semibold text-slate-700 mb-1.5">내용</label>
+                <textarea id="sender-message" rows="4" required placeholder="상세한 내용이나 미팅 제안을 남겨주세요." 
+                          class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition resize-none"></textarea>
+              </div>
+
+              <button type="submit" id="submit-btn" class="w-full py-3 bg-brand-900 hover:bg-brand-800 text-white font-semibold rounded-xl text-sm transition shadow-sm hover:shadow flex items-center justify-center gap-2">
+                <i class="fa-regular fa-paper-plane"></i>
+                <span>메시지 전송</span>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="mt-20 pt-8 border-t border-slate-200 text-center text-xs text-slate-500">
+          <p>© 2026 Choi Yubin. Built with Semantic HTML, Tailwind CSS & Vanilla JavaScript.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 맨 위로 가기 버튼 -->
+  <button id="back-to-top" class="fixed bottom-6 right-6 w-11 h-11 rounded-full bg-brand-900 text-white shadow-lg flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:bg-brand-700 hover:scale-105 z-30" aria-label="맨 위로 가기">
+    <i class="fa-solid fa-arrow-up text-sm"></i>
+  </button>
+
+  <!-- 프로젝트 상세 모달 -->
+  <div id="project-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-6" role="dialog" aria-modal="true">
+    <div id="modal-backdrop" class="fixed inset-0 bg-slate-900/75 backdrop-blur-sm transition-opacity" onclick="closeProjectModal()"></div>
+
+    <div class="relative bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-slate-200 z-10 p-6 sm:p-10 transform transition-all duration-300">
+      <div class="sticky -top-6 sm:-top-10 -mx-6 sm:-mx-10 px-6 sm:px-10 py-4 bg-white/95 backdrop-blur-md border-b border-slate-200 flex items-center justify-between z-30 mb-6">
+        <div class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-brand-600"></span>
+          <span class="font-bold text-slate-800 text-sm tracking-tight">Project Deep Dive</span>
+        </div>
+        <button onclick="closeProjectModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition-colors" aria-label="모달 닫기 (ESC)">
+          <i class="fa-solid fa-xmark text-base"></i>
+        </button>
+      </div>
+
+      <div id="modal-content"></div>
+
+      <div class="mt-10 pt-6 border-t border-slate-200 flex items-center justify-between">
+        <span class="text-xs text-slate-400">키보드 <kbd class="px-2 py-1 bg-slate-100 rounded border border-slate-300 font-mono text-[11px] text-slate-600">ESC</kbd> 또는 바깥 영역 클릭으로 닫기</span>
+        <button onclick="closeProjectModal()" class="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition">
+          닫기
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 토스트 알림 -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 lg:left-auto lg:right-6 lg:translate-x-0 z-50 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-xl flex items-center gap-3 text-xs sm:text-sm font-medium opacity-0 pointer-events-none transition-all duration-300">
+    <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+    <span id="toast-message">알림</span>
+  </div>
+
+  <!-- JavaScript 인터랙션 완성 스크립트 -->
+  <script>
+    // 1. 프로젝트 상세 데이터
+    const projectsData = {
+      p1: {
+        id: "p1",
+        title: "TicketWave : 대규모 동시성 제어 티켓팅 플랫폼",
+        subtitle: "티켓 오픈 순간 트래픽 폭주 환경에서의 데이터 정합성 보장 및 락 메커니즘 최적화",
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200",
+        tags: ["Java 17", "Spring Boot 3", "Redis (Redisson)", "Apache Kafka", "MySQL", "Docker", "nGrinder"],
+        github: "https://github.com",
+        demo: "https://ticketwave.example.com",
+        overview: {
+          period: "2024.03 - 2024.06 (4개월)",
+          team: "4인 팀 프로젝트 (백엔드 2인, 프론트엔드 2인)",
+          role: "백엔드 리드 (좌석 선점 동시성 제어, 대기열 시스템 및 아키텍처 설계 전담)",
+          oneLiner: "순간 트래픽 폭주 환경에서 좌석 중복 결제를 원천 차단하고 서버 다운을 방지하는 분산 티켓팅 시스템"
+        },
+        architecture: {
+          flowDescription: "클라이언트의 대량 접속 요청은 Nginx를 거쳐 Spring Boot 게이트웨이로 유입되며, Redis Sorted Set 기반 대기열을 통해 초당 허용량만큼만 예매 서비스로 진입합니다. 좌석 선택은 Redisson 분산 락으로 1차 정합성을 검증하고, 결제 요청은 Kafka 비동기 큐로 분리하여 DB 부하를 최소화했습니다.",
+          flowSteps: [
+            { icon: "fa-desktop", label: "Client Web", desc: "예매 및 대기열 폴링" },
+            { icon: "fa-network-wired", label: "Nginx LB", desc: "리버스 프록시 / 로드밸런싱" },
+            { icon: "fa-clock", label: "Redis Waiting Queue", desc: "ZSet 기반 순번 발급" },
+            { icon: "fa-lock", label: "Redisson Lock", desc: "좌석 단위 분산 락 선점" },
+            { icon: "fa-comments", label: "Kafka Event Queue", desc: "비동기 결제/주문 처리" },
+            { icon: "fa-database", label: "MySQL Database", desc: "주문 및 티켓 영속화" }
+          ],
+          erdSummary: "Users (1:N) Orders (1:N) OrderTickets (N:1) Seats (N:1) Performances. 좌석 상태 캐싱을 통해 DB 직행 조회 방지."
+        },
+        keyContributions: [
+          {
+            title: "Redisson 분산 락(Distributed Lock) 기반 좌석 선점 제어",
+            desc: "초당 수천 건의 동일 좌석 동시 클릭 요청에 대해 좌석별 고유 락 키를 획득한 단 1명의 요청만 트랜잭션으로 진입하도록 보장."
+          },
+          {
+            title: "Redis Sorted Set(ZSet) 기반 대기열 구현",
+            desc: "타임스탬프 기반 순번 발급 및 1초당 500명씩 정원 토큰(Active Token)을 발급하여 백엔드 오버로드 방어."
+          },
+          {
+            title: "Kafka 기반 비동기 결제 디커플링",
+            desc: "결제 완료 처리를 이벤트 브로커로 분리 발행하여 외부 PG사 통신 지연 시에도 티켓팅 API 스레드가 블로킹되지 않도록 격리."
+          }
+        ],
+        troubleshooting: [
+          {
+            problem: "티켓 오픈 직후 DB 커넥션 풀(HikariCP) 고갈로 504 게이트웨이 타임아웃 발생",
+            cause: "초기 비관적 락(Pessimistic Lock) 설계로 1만 명 동시 접근 시 DB 트랜잭션 대기열 급증.",
+            solution: "DB 락을 제거하고 Redis 인메모리 분산 락(Redisson)으로 선점 유효성 검증을 1차 위임. 대기 시간 초과 시 DB 접근 없이 즉시 실패 반환.",
+            result: "DB 커넥션 사용률 95% → 25% 안정화, 평균 응답 지연 2,800ms → 340ms로 약 87% 단축."
+          }
+        ],
+        retrospective: [
+          "대용량 트래픽 환경에서는 인메모리 캐시, 락, 큐를 결합한 계층적 방어선 설계가 필수적임을 체득했습니다.",
+          "nGrinder 부하 테스트를 통해 정량적 지표 기반 성능 튜닝 사이클을 경험했습니다."
+        ]
+      },
+      p2: {
+        id: "p2",
+        title: "LogiFlow : 실시간 물류·재고 통합 관제 SaaS",
+        subtitle: "다지점 물류 창고 실시간 재고 추적 및 WebSocket 기반 상태 동기화 대시보드",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
+        tags: ["React", "TypeScript", "Node.js (NestJS)", "PostgreSQL", "Socket.io", "Tailwind CSS"],
+        github: "https://github.com",
+        demo: "https://logiflow.example.com",
+        overview: {
+          period: "2023.09 - 2024.01 (5개월)",
+          team: "기업 협력 5인 프로젝트",
+          role: "풀스택 엔지니어 (물류 이벤트 실시간 브로드캐스팅 및 프론트 가상화 테이블 구현)",
+          oneLiner: "수도권 12개 거점 창고의 입출고 상태와 재고 변동을 실시간으로 동기화하는 B2B 관제 플랫폼"
+        },
+        architecture: {
+          flowDescription: "현장 바코드 스캐너의 입출고 이벤트가 인입되면 PostgreSQL에 트랜잭션 기록 후 Socket.io 룸 단위로 해당 거점 브라우저에 실시간 푸시됩니다.",
+          flowSteps: [
+            { icon: "fa-barcode", label: "Scanner / Web", desc: "입출고 이벤트 발생" },
+            { icon: "fa-server", label: "NestJS API", desc: "비즈니스 검증 및 기록" },
+            { icon: "fa-database", label: "PostgreSQL", desc: "재고 원장 트랜잭션" },
+            { icon: "fa-tower-broadcast", label: "Socket.io", desc: "거점별 룸 브로드캐스팅" },
+            { icon: "fa-chart-pie", label: "React Dashboard", desc: "가상화 그리드 실시간 갱신" }
+          ],
+          erdSummary: "Warehouses (1:N) InventoryZones (1:N) StockItems. 복합 인덱스 설계를 통한 고속 검색 지원."
+        },
+        keyContributions: [
+          {
+            title: "Socket.io 룸 기반 지점별 맞춤 스트리밍",
+            desc: "불필요한 전체 브로드캐스팅을 제거하고 거점 창고 ID별 클러스터링으로 네트워크 트래픽 80% 절감."
+          },
+          {
+            title: "React-Window 기반 5만 건 재고 가상화 렌더링",
+            desc: "뷰포트 영역의 DOM 노드만 동적으로 렌더링하여 60fps 스크롤 퍼포먼스 달성."
+          }
+        ],
+        troubleshooting: [
+          {
+            problem: "수만 건 재고 목록 조회 시 브라우저 메모리 폭증 및 스크롤 멈춤 현상 발생",
+            cause: "대량의 DOM 노드가 브라우저 트리에 일시 생성되어 렌더링 파이프라인 과부하.",
+            solution: "React-Window 기반 윈도잉 기법을 도입하여 화면에 노출되는 30여 개 행만 선택적 렌더링.",
+            result: "초기 렌더링 시간 3.2초 → 0.2초로 단축, 메모리 사용량 83% 감소."
+          }
+        ],
+        retrospective: [
+          "백엔드 쿼리 튜닝뿐만 아니라 프론트엔드의 렌더링 파이프라인 최적화가 필수적임을 체득했습니다."
+        ]
+      },
+      p3: {
+        id: "p3",
+        title: "Sentinell : MSA 환경 분산 추적 & 에러 수집 엔진",
+        subtitle: "경량 마이크로서비스 간 HTTP TraceId 전파 및 비동기 장애 알림 파이프라인",
+        image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=1200",
+        tags: ["Go", "Elasticsearch", "Docker", "Kibana", "Slack Webhook"],
+        github: "https://github.com",
+        demo: "https://sentinell.example.com",
+        overview: {
+          period: "2023.03 - 2023.07 (5개월)",
+          team: "개인 단독 프로젝트",
+          role: "단독 개발 (Go 기반 수집 데몬 및 Elasticsearch 인덱싱 파이프라인 전담)",
+          oneLiner: "서비스 간 호출 맥락을 TraceId로 추적하고 이상 에러를 2초 내에 실시간 통보하는 분산 로깅 엔진"
+        },
+        architecture: {
+          flowDescription: "서비스 클러스터의 미들웨어가 X-Trace-ID를 주입하여 통신하며, Sentinell 수집기가 버퍼링 후 Elasticsearch로 고속 벌크 인덱싱합니다.",
+          flowSteps: [
+            { icon: "fa-cubes", label: "Microservices", desc: "TraceId 주입 로깅" },
+            { icon: "fa-memory", label: "Go Channel Buffer", desc: "인메모리 버퍼링" },
+            { icon: "fa-magnifying-glass", label: "Elasticsearch", desc: "벌크 색인" },
+            { icon: "fa-bell", label: "Slack Notifier", desc: "장애 실시간 통보" }
+          ],
+          erdSummary: "Elasticsearch Time-series Index: trace_id, timestamp, log_level, message, stack_trace."
+        },
+        keyContributions: [
+          {
+            title: "Go Goroutine & Channel 기반 배치 버퍼 엔진 구현",
+            desc: "I/O 병목 해소를 위해 내부 링버퍼 채널에서 1,000건 도달 시 Bulk API로 일괄 전송."
+          }
+        ],
+        troubleshooting: [
+          {
+            problem: "대량 로그 유입 시 네트워크 소켓 고갈로 인한 로그 유실",
+            cause: "로그 발생 건마다 개별 HTTP 요청을 발송하여 오버헤드 급증.",
+            solution: "Go의 sync.Pool과 고루틴 워커 풀을 적용해 일정한 커넥션 유지 및 벌크 전송으로 전환.",
+            result: "초당 처리량 1,500 RPS → 25,000 RPS로 16배 향상, 메모리 점유율 64MB 이하 유지."
+          }
+        ],
+        retrospective: [
+          "Go의 경량 동시성 모델을 실전 데몬에 적용하며 하드웨어 리소스 효율을 극한으로 제어하는 법을 배웠습니다."
+        ]
+      },
+      p4: {
+        id: "p4",
+        title: "DevFeed : IT 개발 블로그 자동 피드 & 큐레이션",
+        subtitle: "국내외 주요 테크 블로그 RSS 자동 수집, 카테고리 분류 및 뉴스레터 플랫폼",
+        image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1200",
+        tags: ["Next.js 14", "FastAPI", "PostgreSQL", "Tailwind CSS"],
+        github: "https://github.com",
+        demo: "https://devfeed.example.com",
+        overview: {
+          period: "2022.10 - 2023.01 (4개월)",
+          team: "2인 사이드 프로젝트",
+          role: "백엔드 및 크롤러 개발 (RSS 파싱, DB 정규화, 검색 API 구축)",
+          oneLiner: "매일 수십 곳의 IT 기업 블로그를 자동 수집하여 요약 제공하는 테크 큐레이션 서비스"
+        },
+        architecture: {
+          flowDescription: "FastAPI 크롤러가 블로그 피드를 수집하여 PostgreSQL에 저장하고 Next.js ISR을 통해 SEO 최적화된 정적 페이지로 제공합니다.",
+          flowSteps: [
+            { icon: "fa-rss", label: "Tech RSS", desc: "피드 자동 수집" },
+            { icon: "fa-robot", label: "FastAPI Worker", desc: "본문 정제 및 분류" },
+            { icon: "fa-database", label: "PostgreSQL", desc: "GIN 인덱스 저장" },
+            { icon: "fa-globe", label: "Next.js ISR", desc: "SEO 최적화 서빙" }
+          ],
+          erdSummary: "Feeds (1:N) Articles (M:N) Tags. 전문 검색을 위한 GIN 인덱스 적용."
+        },
+        keyContributions: [
+          {
+            title: "Next.js ISR을 통한 초고속 페이지 로딩 및 SEO 확보",
+            desc: "새 글 발행 시에만 증분 재생성하여 초기 페이지 로딩 0.4초 달성."
+          }
+        ],
+        troubleshooting: [
+          {
+            problem: "다양한 블로그의 인코딩 불일치 및 상대경로 파싱 에러로 인한 수집 누락",
+            cause: "EUC-KR 인코딩 혼재 및 이미지 태그 상대경로 문제.",
+            solution: "Chardet 인코딩 자동 판별기 및 절대 URL 변환기를 크롤러 전단에 배치.",
+            result: "수집 성공률 81% → 99.8% 달성, 12,000건 이상 안정적 수집."
+          }
+        ],
+        retrospective: [
+          "외부 시스템의 불확실성에 대응하는 견고한 예외 방어 로직의 가치를 확인했습니다."
+        ]
+      }
+    };
+
+    // 2. 모달 열기/닫기
+    const projectModal = document.getElementById('project-modal');
+    const modalContent = document.getElementById('modal-content');
+
+    function openProjectModal(projectId) {
+      const p = projectsData[projectId];
+      if (!p) return;
+
+      modalContent.innerHTML = `
+        <article class="space-y-10 text-slate-800">
+          <div>
+            <div class="flex flex-wrap items-center gap-2 mb-2">
+              <span class="px-2.5 py-1 rounded-md bg-brand-50 text-brand-700 font-bold text-xs">${p.overview.period}</span>
+              <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 font-semibold text-xs">${p.overview.team}</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug">${p.title}</h2>
+            <p class="text-sm sm:text-base text-slate-500 mt-2 font-medium">${p.subtitle}</p>
+            <div class="mt-5 rounded-2xl overflow-hidden aspect-[16/9] bg-slate-100 shadow-md border border-slate-200">
+              <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover">
+            </div>
+            <div class="flex flex-wrap gap-2 mt-4">
+              ${p.tags.map(t => `<span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium cursor-default">#${t}</span>`).join('')}
+            </div>
+          </div>
+
+          <!-- 1. 프로젝트 개요 -->
+          <section class="p-5 sm:p-6 rounded-2xl bg-slate-50/80 border border-slate-200">
+            <h3 class="text-sm sm:text-base font-bold text-brand-900 flex items-center gap-2 mb-4">
+              <span class="w-6 h-6 rounded-lg bg-brand-900 text-white flex items-center justify-center text-xs font-bold">1</span>
+              프로젝트 개요 (Overview)
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+              <div class="space-y-1">
+                <span class="font-semibold text-slate-400 block text-[11px] uppercase tracking-wider">진행 기간</span>
+                <span class="font-medium text-slate-800">${p.overview.period}</span>
+              </div>
+              <div class="space-y-1">
+                <span class="font-semibold text-slate-400 block text-[11px] uppercase tracking-wider">팀 구성</span>
+                <span class="font-medium text-slate-800">${p.overview.team}</span>
+              </div>
+              <div class="space-y-1 sm:col-span-2">
+                <span class="font-semibold text-slate-400 block text-[11px] uppercase tracking-wider">담당 역할</span>
+                <span class="font-semibold text-brand-700">${p.overview.role}</span>
+              </div>
+              <div class="space-y-1 sm:col-span-2 pt-2 border-t border-slate-200/60">
+                <span class="font-semibold text-slate-400 block text-[11px] uppercase tracking-wider">서비스 한 줄 요약</span>
+                <p class="font-medium text-slate-800 leading-relaxed">${p.overview.oneLiner}</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 2. 아키텍처 -->
+          <section class="space-y-4">
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-brand-900 text-white flex items-center justify-center text-xs font-bold">2</span>
+              시스템 아키텍처 (Architecture & Flow)
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${p.architecture.flowDescription}</p>
+            <div class="p-4 rounded-2xl bg-slate-900 text-white shadow-inner">
+              <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+                ${p.architecture.flowSteps.map((step, idx) => `
+                  <div class="p-2.5 rounded-xl bg-slate-800 border border-slate-700 text-center">
+                    <div class="w-7 h-7 rounded-lg bg-brand-600/30 text-brand-400 mx-auto flex items-center justify-center mb-1.5 text-xs">
+                      <i class="fa-solid ${step.icon}"></i>
+                    </div>
+                    <div class="font-bold text-[11px] text-slate-200">${step.label}</div>
+                    <div class="text-[10px] text-slate-400 mt-0.5 line-clamp-1">${step.desc}</div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600">
+              <strong class="text-slate-800 block mb-1">ERD 요약:</strong> ${p.architecture.erdSummary}
+            </div>
+          </section>
+
+          <!-- 3. 핵심 기여 -->
+          <section class="space-y-4">
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-brand-900 text-white flex items-center justify-center text-xs font-bold">3</span>
+              핵심 구현 기능 (Key Contributions)
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              ${p.keyContributions.map((contrib, i) => `
+                <div class="p-4 rounded-xl bg-white border border-slate-200">
+                  <div class="flex items-center gap-2 mb-1.5">
+                    <span class="w-5 h-5 rounded-full bg-blue-50 text-brand-600 text-[11px] font-bold flex items-center justify-center">${i + 1}</span>
+                    <h4 class="font-bold text-xs sm:text-sm text-slate-900">${contrib.title}</h4>
+                  </div>
+                  <p class="text-xs text-slate-600 leading-relaxed pl-7">${contrib.desc}</p>
+                </div>
+              `).join('')}
+            </div>
+          </section>
+
+          <!-- 4. 트러블슈팅 -->
+          <section class="space-y-4">
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-brand-900 text-white flex items-center justify-center text-xs font-bold">4</span>
+              기술적 도전 및 트러블슈팅 (Troubleshooting)
+            </h3>
+            <div class="space-y-4">
+              ${p.troubleshooting.map((t, idx) => `
+                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+                  <div class="font-bold text-xs sm:text-sm text-slate-900 border-b border-slate-200 pb-2">
+                    <span class="px-2 py-0.5 rounded bg-brand-900 text-white text-[11px] mr-1.5">Case #${idx + 1}</span>${t.problem}
+                  </div>
+                  <div class="grid grid-cols-1 gap-2 text-xs">
+                    <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200/60 text-slate-700">
+                      <strong class="text-amber-800 block mb-0.5">원인 분석:</strong> ${t.cause}
+                    </div>
+                    <div class="p-3 rounded-xl bg-blue-50/70 border border-blue-200/60 text-slate-700">
+                      <strong class="text-brand-800 block mb-0.5">해결 방법:</strong> ${t.solution}
+                    </div>
+                    <div class="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200/60 text-emerald-900 font-semibold">
+                      <strong class="text-emerald-800 block mb-0.5">결과:</strong> ${t.result}
+                    </div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </section>
+
+          <!-- 5. 회고 -->
+          <section class="p-5 sm:p-6 rounded-2xl bg-blue-50/40 border border-brand-100">
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 mb-3 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-brand-900 text-white flex items-center justify-center text-xs font-bold">5</span>
+              배운 점 및 회고
+            </h3>
+            <ul class="space-y-1.5 text-xs sm:text-sm text-slate-700 list-disc list-inside">
+              ${p.retrospective.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+          </section>
+        </article>
+      `;
+
+      projectModal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProjectModal() {
+      projectModal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !projectModal.classList.contains('hidden')) {
+        closeProjectModal();
+      }
+    });
+
+    // 3. 토스트 알림
+    let toastTimer = null;
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.textContent = message;
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 3000);
+    }
+
+    function copyEmailToClipboard() {
+      const email = "dbqls6746@gmail.com";
+      navigator.clipboard.writeText(email).then(() => {
+        showToast("이메일 주소(" + email + ")가 복사되었습니다!");
+      }).catch(() => {
+        showToast("이메일 복사에 실패했습니다.");
+      });
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('sender-name').value;
+      const submitBtn = document.getElementById('submit-btn');
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>전송 중...</span>';
+
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fa-regular fa-paper-plane"></i> <span>메시지 전송</span>';
+        document.getElementById('contact-form').reset();
+        showToast(`${name} 님, 메시지가 성공적으로 전송되었습니다!`);
+      }, 1000);
+    }
+
+    // 4. Hero 타이핑 애니메이션
+    const heroPhrases = [
+      "안녕하세요! 저는 최유빈입니다.",
+      "Frontend와 Backend를 다룰 줄 알고 계속해서 성장하는 풀스택 개발자입니다."
+    ];
+    let heroPhraseIndex = 0;
+    let heroCharIndex = 0;
+    let isHeroDeleting = false;
+    const heroTypingSpeed = 80;
+    const heroDeletingSpeed = 35;
+    const heroHoldDelay = 2200;
+
+    function typeHeroEffect() {
+      const targetEl = document.getElementById('hero-typing-text');
+      if (!targetEl) return;
+
+      const currentPhrase = heroPhrases[heroPhraseIndex];
+
+      if (isHeroDeleting) {
+        targetEl.textContent = currentPhrase.substring(0, heroCharIndex - 1);
+        heroCharIndex--;
+      } else {
+        targetEl.textContent = currentPhrase.substring(0, heroCharIndex + 1);
+        heroCharIndex++;
+      }
+
+      if (!isHeroDeleting && heroCharIndex === currentPhrase.length) {
+        setTimeout(() => {
+          isHeroDeleting = true;
+          typeHeroEffect();
+        }, heroHoldDelay);
+        return;
+      } else if (isHeroDeleting && heroCharIndex === 0) {
+        isHeroDeleting = false;
+        heroPhraseIndex = (heroPhraseIndex + 1) % heroPhrases.length;
+        setTimeout(typeHeroEffect, 400);
+        return;
+      }
+
+      setTimeout(typeHeroEffect, isHeroDeleting ? heroDeletingSpeed : heroTypingSpeed);
+    }
+
+    // 5. 모바일 메뉴 토글 & Scrollspy & 필터링 & 맨 위로 가기 바인딩
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(typeHeroEffect, 300);
+
+      // 모바일 메뉴 제어
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileCloseBtn = document.getElementById('mobile-menu-close-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileOverlay = document.getElementById('mobile-menu-overlay');
+      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+      function toggleMobileMenu(open) {
+        if (open) {
+          mobileMenu.classList.remove('translate-x-full');
+          mobileOverlay.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+        } else {
+          mobileMenu.classList.add('translate-x-full');
+          mobileOverlay.classList.add('hidden');
+          document.body.style.overflow = '';
+        }
+      }
+
+      mobileBtn?.addEventListener('click', () => toggleMobileMenu(true));
+      mobileCloseBtn?.addEventListener('click', () => toggleMobileMenu(false));
+      mobileOverlay?.addEventListener('click', () => toggleMobileMenu(false));
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => toggleMobileMenu(false));
+      });
+
+      // 프로젝트 카테고리 필터링
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const projectCards = document.querySelectorAll('.project-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => {
+            b.classList.remove('bg-white', 'text-slate-900', 'font-semibold', 'shadow-xs');
+            b.classList.add('text-slate-600');
+          });
+          btn.classList.add('bg-white', 'text-slate-900', 'font-semibold', 'shadow-xs');
+          btn.classList.remove('text-slate-600');
+
+          const filter = btn.getAttribute('data-filter');
+          projectCards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            if (filter === 'all' || category === filter) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // 맨 위로 가기 (Back to top) 버튼 제어
+      const backToTopBtn = document.getElementById('back-to-top');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+          backToTopBtn?.classList.remove('opacity-0', 'pointer-events-none');
+        } else {
+          backToTopBtn?.classList.add('opacity-0', 'pointer-events-none');
+        }
+      });
+      backToTopBtn?.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // Scrollspy (스크롤 위치에 따른 데스크톱 좌측 메뉴 활성화)
+      const sections = document.querySelectorAll('main section');
+      const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+
+      window.addEventListener('scroll', () => {
+        let currentSectionId = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 120;
+          if (window.pageYOffset >= sectionTop) {
+            currentSectionId = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${currentSectionId}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
