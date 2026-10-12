@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="40%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="45%">
+      <stop offset="0%" stop-color="#2563eb" stop-opacity="0.3"/>
+      <stop offset="60%" stop-color="#1d4ed8" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="1" stroke-opacity="0.25"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect width="1200" height="675" fill="url(#grid)"/>
+  <circle cx="600" cy="310" r="340" fill="url(#glow)"/>
+  
+  <g transform="translate(600, 310)" text-anchor="middle">
+    <!-- Category Badge -->
+    <rect x="-125" y="-130" width="250" height="38" rx="19" fill="#1e3a8a" fill-opacity="0.5" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="0" y="-106" fill="#93c5fd" font-family="'Pretendard', -apple-system, sans-serif" font-size="14" font-weight="700" letter-spacing="3">SPRING BOOT &amp; MVC</text>
+    
+    <!-- Title -->
+    <text x="0" y="10" fill="#ffffff" font-family="'Pretendard', -apple-system, sans-serif" font-size="78" font-weight="900" letter-spacing="6">RE:DAY</text>
+    
+    <!-- Subtitle -->
+    <text x="0" y="68" fill="#cbd5e1" font-family="'Pretendard', -apple-system, sans-serif" font-size="21" font-weight="600">데일리 총평 &amp; 서브 리뷰 라이프 커뮤니티</text>
+    <text x="0" y="98" fill="#64748b" font-family="'Pretendard', -apple-system, sans-serif" font-size="15" font-weight="500">수익형 제휴 BM 결합 통합 리뷰 플랫폼</text>
+    
+    <!-- Status Tag -->
+    <rect x="-105" y="130" width="210" height="34" rx="17" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-width="1" stroke-opacity="0.2"/>
+    <text x="0" y="152" fill="#94a3b8" font-family="'Pretendard', -apple-system, sans-serif" font-size="13" font-weight="600" letter-spacing="1">📷 썸네일 준비 중</text>
+  </g>
+</svg>
+

@@ -69,15 +69,27 @@ export default function ProjectModal({ projectId, onClose }) {
             <div className="mt-5 rounded-2xl overflow-hidden aspect-[16/9] bg-slate-100 shadow-md border border-slate-200">
               <img src={p.image} alt={p.title} className="w-full h-full object-cover" />
             </div>
-            <div className="flex flex-wrap gap-2 mt-4">
-              {p.tags.map((t, idx) => (
-                <span
-                  key={idx}
-                  className="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium cursor-default"
-                >
-                  #{t}
-                </span>
-              ))}
+            <div className="flex flex-wrap items-center justify-between gap-3 mt-4">
+              <div className="flex flex-wrap gap-2">
+                {p.tags.map((t, idx) => (
+                  <span
+                    key={idx}
+                    className="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-medium cursor-default"
+                  >
+                    #{t}
+                  </span>
+                ))}
+              </div>
+              <a
+                href={p.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold shadow-xs transition"
+              >
+                <i className="fa-brands fa-github text-sm"></i>
+                <span>GitHub 저장소 바로가기</span>
+                <i className="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i>
+              </a>
             </div>
           </div>
 
@@ -110,113 +122,27 @@ export default function ProjectModal({ projectId, onClose }) {
               </div>
               <div className="space-y-1 sm:col-span-2 pt-2 border-t border-slate-200/60">
                 <span className="font-semibold text-slate-400 block text-[11px] uppercase tracking-wider">
-                  서비스 한 줄 요약
+                  서비스 한 줄 설명
                 </span>
                 <p className="font-medium text-slate-800 leading-relaxed">{p.overview.oneLiner}</p>
               </div>
             </div>
           </section>
 
-          {/* 2. 아키텍처 */}
-          <section className="space-y-4">
-            <h3 className="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2">
+          {/* 2. 느낀 점 및 배운 점 */}
+          <section className="p-5 sm:p-6 rounded-2xl bg-blue-50/40 border border-brand-100">
+            <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-4 flex items-center gap-2">
               <span className="w-6 h-6 rounded-lg bg-brand-900 text-white flex items-center justify-center text-xs font-bold">
                 2
               </span>
-              시스템 아키텍처 (Architecture & Flow)
+              느낀 점 및 배운 점 (Learnings &amp; Retrospective)
             </h3>
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              {p.architecture.flowDescription}
-            </p>
-            <div className="p-4 rounded-2xl bg-slate-900 text-white shadow-inner">
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
-                {p.architecture.flowSteps.map((step, idx) => (
-                  <div
-                    key={idx}
-                    className="p-2.5 rounded-xl bg-slate-800 border border-slate-700 text-center"
-                  >
-                    <div className="w-7 h-7 rounded-lg bg-brand-600/30 text-brand-400 mx-auto flex items-center justify-center mb-1.5 text-xs">
-                      <i className={`fa-solid ${step.icon}`}></i>
-                    </div>
-                    <div className="font-bold text-[11px] text-slate-200">{step.label}</div>
-                    <div className="text-[10px] text-slate-400 mt-0.5 line-clamp-1">{step.desc}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600">
-              <strong className="text-slate-800 block mb-1">ERD 요약:</strong>{' '}
-              {p.architecture.erdSummary}
-            </div>
-          </section>
-
-          {/* 3. 핵심 기여 */}
-          <section className="space-y-4">
-            <h3 className="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2">
-              <span className="w-6 h-6 rounded-lg bg-brand-900 text-white flex items-center justify-center text-xs font-bold">
-                3
-              </span>
-              핵심 구현 기능 (Key Contributions)
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-              {p.keyContributions.map((contrib, i) => (
-                <div key={i} className="p-4 rounded-xl bg-white border border-slate-200">
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <span className="w-5 h-5 rounded-full bg-blue-50 text-brand-600 text-[11px] font-bold flex items-center justify-center">
-                      {i + 1}
-                    </span>
-                    <h4 className="font-bold text-xs sm:text-sm text-slate-900">{contrib.title}</h4>
-                  </div>
-                  <p className="text-xs text-slate-600 leading-relaxed pl-7">{contrib.desc}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* 4. 트러블슈팅 */}
-          <section className="space-y-4">
-            <h3 className="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2">
-              <span className="w-6 h-6 rounded-lg bg-brand-900 text-white flex items-center justify-center text-xs font-bold">
-                4
-              </span>
-              기술적 도전 및 트러블슈팅 (Troubleshooting)
-            </h3>
-            <div className="space-y-4">
-              {p.troubleshooting.map((t, idx) => (
-                <div key={idx} className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
-                  <div className="font-bold text-xs sm:text-sm text-slate-900 border-b border-slate-200 pb-2">
-                    <span className="px-2 py-0.5 rounded bg-brand-900 text-white text-[11px] mr-1.5">
-                      Case #{idx + 1}
-                    </span>
-                    {t.problem}
-                  </div>
-                  <div className="grid grid-cols-1 gap-2 text-xs">
-                    <div className="p-3 rounded-xl bg-amber-50/70 border border-amber-200/60 text-slate-700">
-                      <strong className="text-amber-800 block mb-0.5">원인 분석:</strong> {t.cause}
-                    </div>
-                    <div className="p-3 rounded-xl bg-blue-50/70 border border-blue-200/60 text-slate-700">
-                      <strong className="text-brand-800 block mb-0.5">해결 방법:</strong> {t.solution}
-                    </div>
-                    <div className="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200/60 text-emerald-900 font-semibold">
-                      <strong className="text-emerald-800 block mb-0.5">결과:</strong> {t.result}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* 5. 회고 */}
-          <section className="p-5 sm:p-6 rounded-2xl bg-blue-50/40 border border-brand-100">
-            <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-3 flex items-center gap-2">
-              <span className="w-6 h-6 rounded-lg bg-brand-900 text-white flex items-center justify-center text-xs font-bold">
-                5
-              </span>
-              배운 점 및 회고
-            </h3>
-            <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700 list-disc list-inside">
+            <ul className="space-y-2.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
               {p.retrospective.map((item, idx) => (
-                <li key={idx}>{item}</li>
+                <li key={idx} className="flex items-start gap-2.5">
+                  <i className="fa-solid fa-check text-brand-600 mt-1 text-xs shrink-0"></i>
+                  <span>{item}</span>
+                </li>
               ))}
             </ul>
           </section>

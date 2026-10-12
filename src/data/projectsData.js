@@ -1,191 +1,164 @@
 export const projectsData = {
   p1: {
     id: "p1",
-    category: "backend",
-    title: "TicketWave : 대규모 동시성 제어 티켓팅 플랫폼",
-    subtitle: "티켓 오픈 순간 트래픽 폭주 환경에서의 데이터 정합성 보장 및 락 메커니즘 최적화",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200",
-    tags: ["Java 17", "Spring Boot 3", "Redis (Redisson)", "Apache Kafka", "MySQL", "Docker", "nGrinder"],
-    github: "https://github.com",
-    demo: "https://ticketwave.example.com",
+    category: "frontend",
+    title: "GreenWay : 힐링 산책로 & 공원 소개 플랫폼",
+    subtitle: "전자기기 과의존 현대인을 위한 위치 기반 산책로 탐색 및 힐링 공원 아카이빙 웹 서비스",
+    image: "/projects/greenway.jpg",
+    tags: ["React", "JavaScript", "Tailwind CSS", "REST API", "Responsive Web"],
+    github: "https://github.com/dbqls6746-bot/first-project.git",
+    demo: "https://github.com/dbqls6746-bot/first-project.git",
     overview: {
-      period: "2024.03 - 2024.06 (4개월)",
-      team: "4인 팀 프로젝트 (백엔드 2인, 프론트엔드 2인)",
-      role: "백엔드 리드 (좌석 선점 동시성 제어, 대기열 시스템 및 아키텍처 설계 전담)",
-      oneLiner: "순간 트래픽 폭주 환경에서 좌석 중복 결제를 원천 차단하고 서버 다운을 방지하는 분산 티켓팅 시스템"
+      period: "1차 프로젝트 (팀 프로젝트)",
+      team: "Team OneCode (팀 프로젝트)",
+      role: "프론트엔드 개발 (컴포넌트 설계, 비동기 API 연동 및 상태 관리 전담)",
+      oneLiner: "전자기기에 의존해 살아가는 현대인들을 산책시키고자하는 목적으로 제작한 산책로/공원 소개 페이지"
     },
     architecture: {
-      flowDescription: "클라이언트의 대량 접속 요청은 Nginx를 거쳐 Spring Boot 게이트웨이로 유입되며, Redis Sorted Set 기반 대기열을 통해 초당 허용량만큼만 예매 서비스로 진입합니다. 좌석 선택은 Redisson 분산 락으로 1차 정합성을 검증하고, 결제 요청은 Kafka 비동기 큐로 분리하여 DB 부하를 최소화했습니다.",
+      flowDescription: "React 기반 Single Page Application(SPA) 아키텍처로 설계되어 공공데이터 REST API 및 산책로 데이터를 비동기로 패칭하고, 재사용 가능한 모듈형 컴포넌트와 반응형 레이아웃을 통해 모바일/데스크톱 최적의 힐링 탐색 경험을 제공합니다.",
       flowSteps: [
-        { icon: "fa-desktop", label: "Client Web", desc: "예매 및 대기열 폴링" },
-        { icon: "fa-network-wired", label: "Nginx LB", desc: "리버스 프록시 / 로드밸런싱" },
-        { icon: "fa-clock", label: "Redis Waiting Queue", desc: "ZSet 기반 순번 발급" },
-        { icon: "fa-lock", label: "Redisson Lock", desc: "좌석 단위 분산 락 선점" },
-        { icon: "fa-comments", label: "Kafka Event Queue", desc: "비동기 결제/주문 처리" },
-        { icon: "fa-database", label: "MySQL Database", desc: "주문 및 티켓 영속화" }
+        { icon: "fa-desktop", label: "Client UI", desc: "React 컴포넌트 뷰" },
+        { icon: "fa-route", label: "Trail List", desc: "산책로/공원 필터링" },
+        { icon: "fa-arrows-rotate", label: "State Store", desc: "React Hooks 상태 관리" },
+        { icon: "fa-cloud", label: "REST API", desc: "산책로 및 공원 데이터" },
+        { icon: "fa-map-location-dot", label: "Map Service", desc: "지도 및 위치 시각화" },
+        { icon: "fa-mobile-screen", label: "Responsive", desc: "Tailwind 반응형 뷰" }
       ],
-      erdSummary: "Users (1:N) Orders (1:N) OrderTickets (N:1) Seats (N:1) Performances. 좌석 상태 캐싱을 통해 DB 직행 조회 방지."
+      erdSummary: "Trails (산책로 정보) - Parks (공원 메타데이터) - Reviews (사용자 한줄평 및 평점) 구조 기반 데이터 매핑."
     },
     keyContributions: [
       {
-        title: "Redisson 분산 락(Distributed Lock) 기반 좌석 선점 제어",
-        desc: "초당 수천 건의 동일 좌석 동시 클릭 요청에 대해 좌석별 고유 락 키를 획득한 단 1명의 요청만 트랜잭션으로 진입하도록 보장."
+        title: "컴포넌트 재사용성 극대화 및 모듈화",
+        desc: "산책로 카드, 필터 바, 모달 뷰 등 반복되는 UI 요소를 원자 단위 컴포넌트로 분리하여 유지보수성과 확장성을 높였습니다."
       },
       {
-        title: "Redis Sorted Set(ZSet) 기반 대기열 구현",
-        desc: "타임스탬프 기반 순번 발급 및 1초당 500명씩 정원 토큰(Active Token)을 발급하여 백엔드 오버로드 방어."
+        title: "비동기 REST API 연동 및 상태 관리",
+        desc: "외부 산책로/공원 API 호출 시 비동기 통신 에러 방어 로직과 로딩 스켈레톤을 구현하여 매끄러운 사용자 경험을 제공했습니다."
       },
       {
-        title: "Kafka 기반 비동기 결제 디커플링",
-        desc: "결제 완료 처리를 이벤트 브로커로 분리 발행하여 외부 PG사 통신 지연 시에도 티켓팅 API 스레드가 블로킹되지 않도록 격리."
+        title: "Tailwind CSS 기반 모바일 우선 반응형 UI",
+        desc: "다양한 디바이스 뷰포트에 맞춘 완벽한 반응형 인터페이스를 구현하여 야외 산책 시 모바일 접근성을 극대화했습니다."
       }
     ],
     troubleshooting: [
       {
-        problem: "티켓 오픈 직후 DB 커넥션 풀(HikariCP) 고갈로 504 게이트웨이 타임아웃 발생",
-        cause: "초기 비관적 락(Pessimistic Lock) 설계로 1만 명 동시 접근 시 DB 트랜잭션 대기열 급증.",
-        solution: "DB 락을 제거하고 Redis 인메모리 분산 락(Redisson)으로 선점 유효성 검증을 1차 위임. 대기 시간 초과 시 DB 접근 없이 즉시 실패 반환.",
-        result: "DB 커넥션 사용률 95% → 25% 안정화, 평균 응답 지연 2,800ms → 340ms로 약 87% 단축."
+        problem: "산책로 데이터 비동기 호출 시 네트워크 지연으로 인한 화면 깜빡임 및 레이아웃 시프트(CLS)",
+        cause: "데이터 로딩 완료 전 빈 컨테이너 렌더링으로 뷰 높이가 순간 변경됨.",
+        solution: "스켈레톤 로더 컴포넌트 도입 및 데이터 패칭 상태를 세분화하여 전환 애니메이션 적용.",
+        result: "시각적 불안정성 해소 및 초기 로딩 체감 속도 대폭 개선."
       }
     ],
     retrospective: [
-      "대용량 트래픽 환경에서는 인메모리 캐시, 락, 큐를 결합한 계층적 방어선 설계가 필수적임을 체득했습니다.",
-      "nGrinder 부하 테스트를 통해 정량적 지표 기반 성능 튜닝 사이클을 경험했습니다."
+      "컴포넌트 기반 아키텍처에서 props drilling을 방지하고 재사용 가능한 UI를 설계하는 프론트엔드의 기초 원리를 깊이 체득했습니다.",
+      "실제 사용자 관점에서 산책을 유도할 수 있는 직관적인 UI/UX 흐름을 고민하고 팀원들과 소통하며 구현한 뜻깊은 첫 프로젝트였습니다."
     ]
   },
   p2: {
     id: "p2",
-    category: "fullstack",
-    title: "LogiFlow : 실시간 물류·재고 통합 관제 SaaS",
-    subtitle: "다지점 물류 창고 실시간 재고 추적 및 WebSocket 기반 상태 동기화 대시보드",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
-    tags: ["React", "TypeScript", "Node.js (NestJS)", "PostgreSQL", "Socket.io", "Tailwind CSS"],
-    github: "https://github.com",
-    demo: "https://logiflow.example.com",
+    category: "backend",
+    title: "RE:DAY : 통합 라이프 리뷰 커뮤니티 플랫폼",
+    subtitle: "데일리 일상 총평과 제품·장소 세부 서브 리뷰를 결합하고 제휴 BM을 접목한 차세대 리뷰 커뮤니티",
+    image: "/projects/reday.svg",
+    tags: ["Java", "Spring Boot", "Spring MVC", "Oracle DB", "MyBatis"],
+    github: "https://github.com/dbqls6746-bot/second-project.git",
+    demo: "https://github.com/dbqls6746-bot/second-project.git",
     overview: {
-      period: "2023.09 - 2024.01 (5개월)",
-      team: "기업 협력 5인 프로젝트",
-      role: "풀스택 엔지니어 (물류 이벤트 실시간 브로드캐스팅 및 프론트 가상화 테이블 구현)",
-      oneLiner: "수도권 12개 거점 창고의 입출고 상태와 재고 변동을 실시간으로 동기화하는 B2B 관제 플랫폼"
+      period: "2차 프로젝트 (팀 프로젝트)",
+      team: "Team RE:DAY (팀 프로젝트)",
+      role: "백엔드 핵심 설계 및 DB 모델링 (MVC 아키텍처, MyBatis 연동, 비즈니스 로직 전담)",
+      oneLiner: "일상 기록(데일리 총평)에 제품·장소 등의 세부 경험(서브 리뷰)과 수익형 제휴 BM을 결합한 통합 라이프 리뷰 커뮤니티"
     },
     architecture: {
-      flowDescription: "현장 바코드 스캐너의 입출고 이벤트가 인입되면 PostgreSQL에 트랜잭션 기록 후 Socket.io 룸 단위로 해당 거점 브라우저에 실시간 푸시됩니다.",
+      flowDescription: "Spring MVC 계층형 아키텍처(Controller-Service-DAO/Mapper)를 바탕으로 클라이언트 요청을 처리하며, Oracle DB와 MyBatis를 활용한 정규화 모델링 및 트랜잭션 관리로 견고한 비즈니스 로직을 완성했습니다.",
       flowSteps: [
-        { icon: "fa-barcode", label: "Scanner / Web", desc: "입출고 이벤트 발생" },
-        { icon: "fa-server", label: "NestJS API", desc: "비즈니스 검증 및 기록" },
-        { icon: "fa-database", label: "PostgreSQL", desc: "재고 원장 트랜잭션" },
-        { icon: "fa-tower-broadcast", label: "Socket.io", desc: "거점별 룸 브로드캐스팅" },
-        { icon: "fa-chart-pie", label: "React Dashboard", desc: "가상화 그리드 실시간 갱신" }
+        { icon: "fa-browser", label: "Client View", desc: "웹 UI 요청" },
+        { icon: "fa-diagram-project", label: "Spring Controller", desc: "요청 라우팅 & 바인딩" },
+        { icon: "fa-gears", label: "Service Layer", desc: "비즈니스 트랜잭션 처리" },
+        { icon: "fa-database", label: "MyBatis Mapper", desc: "SQL 매핑 & 바인딩" },
+        { icon: "fa-server", label: "Oracle Database", desc: "정규화 RDBMS 영속화" },
+        { icon: "fa-shield-halved", label: "Security & Auth", desc: "회원 인증 및 권한 검증" }
       ],
-      erdSummary: "Warehouses (1:N) InventoryZones (1:N) StockItems. 복합 인덱스 설계를 통한 고속 검색 지원."
+      erdSummary: "Users (1:N) DailyReviews (1:N) SubReviews (N:1) Products/Places. 수익형 제휴 링크 및 포인트 적립 테이블 정규화 설계."
     },
     keyContributions: [
       {
-        title: "Socket.io 룸 기반 지점별 맞춤 스트리밍",
-        desc: "불필요한 전체 브로드캐스팅을 제거하고 거점 창고 ID별 클러스터링으로 네트워크 트래픽 80% 절감."
+        title: "정규화된 ERD 설계 및 무결성 제약조건 구축",
+        desc: "데일리 총평과 서브 리뷰 간 1:N 종속 관계를 명확히 설계하고 무결성 제약조건을 부여하여 데이터 중복 및 이상 현상을 원천 방지했습니다."
       },
       {
-        title: "React-Window 기반 5만 건 재고 가상화 렌더링",
-        desc: "뷰포트 영역의 DOM 노드만 동적으로 렌더링하여 60fps 스크롤 퍼포먼스 달성."
+        title: "Spring MVC 계층형 아키텍처 기반 비즈니스 로직 모듈화",
+        desc: "Controller, Service, Mapper 책임을 엄격히 분리하여 결합도를 낮추고 비즈니스 로직 재사용성을 확보했습니다."
+      },
+      {
+        title: "MyBatis 기반 정밀 SQL 작성 및 쿼리 최적화",
+        desc: "복잡한 서브 리뷰 집계와 제휴 상품 클릭 로그 조회를 위한 JOIN 쿼리를 정교하게 작성하여 DB 부하를 경감시켰습니다."
       }
     ],
     troubleshooting: [
       {
-        problem: "수만 건 재고 목록 조회 시 브라우저 메모리 폭증 및 스크롤 멈춤 현상 발생",
-        cause: "대량의 DOM 노드가 브라우저 트리에 일시 생성되어 렌더링 파이프라인 과부하.",
-        solution: "React-Window 기반 윈도잉 기법을 도입하여 화면에 노출되는 30여 개 행만 선택적 렌더링.",
-        result: "초기 렌더링 시간 3.2초 → 0.2초로 단축, 메모리 사용량 83% 감소."
+        problem: "데일리 총평 삭제 시 연관된 다수의 서브 리뷰 및 제휴 링크 레코드 간 외래키 제약조건 위배 에러 발생",
+        cause: "종속 자식 테이블 데이터에 대한 캐스케이드 삭제 정책 부재 및 트랜잭션 롤백 미처리.",
+        solution: "Spring @Transactional 기반 원자성 보장 및 Oracle DB ON DELETE CASCADE 제약조건과 사전 검증 로직 적용.",
+        result: "데이터 정합성 100% 보장 및 예외 발생 시 안전한 롤백 체계 확립."
       }
     ],
     retrospective: [
-      "백엔드 쿼리 튜닝뿐만 아니라 프론트엔드의 렌더링 파이프라인 최적화가 필수적임을 체득했습니다."
+      "데이터베이스 모델링 단계에서의 꼼꼼한 설계가 전체 시스템의 안정성과 개발 생산성을 좌우한다는 것을 실감했습니다.",
+      "MyBatis와 Spring MVC를 연동하며 SQL과 자바 객체 간 매핑 흐름을 깊이 있게 학습할 수 있었습니다."
     ]
   },
   p3: {
     id: "p3",
-    category: "backend",
-    title: "Sentinell : MSA 환경 분산 추적 & 에러 수집 엔진",
-    subtitle: "경량 마이크로서비스 간 HTTP TraceId 전파 및 비동기 장애 알림 파이프라인",
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=1200",
-    tags: ["Go", "Elasticsearch", "Docker", "Kibana", "Slack Webhook"],
-    github: "https://github.com",
-    demo: "https://sentinell.example.com",
-    overview: {
-      period: "2023.03 - 2023.07 (5개월)",
-      team: "개인 단독 프로젝트",
-      role: "단독 개발 (Go 기반 수집 데몬 및 Elasticsearch 인덱싱 파이프라인 전담)",
-      oneLiner: "서비스 간 호출 맥락을 TraceId로 추적하고 이상 에러를 2초 내에 실시간 통보하는 분산 로깅 엔진"
-    },
-    architecture: {
-      flowDescription: "서비스 클러스터의 미들웨어가 X-Trace-ID를 주입하여 통신하며, Sentinell 수집기가 버퍼링 후 Elasticsearch로 고속 벌크 인덱싱합니다.",
-      flowSteps: [
-        { icon: "fa-cubes", label: "Microservices", desc: "TraceId 주입 로깅" },
-        { icon: "fa-memory", label: "Go Channel Buffer", desc: "인메모리 버퍼링" },
-        { icon: "fa-magnifying-glass", label: "Elasticsearch", desc: "벌크 색인" },
-        { icon: "fa-bell", label: "Slack Notifier", desc: "장애 실시간 통보" }
-      ],
-      erdSummary: "Elasticsearch Time-series Index: trace_id, timestamp, log_level, message, stack_trace."
-    },
-    keyContributions: [
-      {
-        title: "Go Goroutine & Channel 기반 배치 버퍼 엔진 구현",
-        desc: "I/O 병목 해소를 위해 내부 링버퍼 채널에서 1,000건 도달 시 Bulk API로 일괄 전송."
-      }
-    ],
-    troubleshooting: [
-      {
-        problem: "대량 로그 유입 시 네트워크 소켓 고갈로 인한 로그 유실",
-        cause: "로그 발생 건마다 개별 HTTP 요청을 발송하여 오버헤드 급증.",
-        solution: "Go의 sync.Pool과 고루틴 워커 풀을 적용해 일정한 커넥션 유지 및 벌크 전송으로 전환.",
-        result: "초당 처리량 1,500 RPS → 25,000 RPS로 16배 향상, 메모리 점유율 64MB 이하 유지."
-      }
-    ],
-    retrospective: [
-      "Go의 경량 동시성 모델을 실전 데몬에 적용하며 하드웨어 리소스 효율을 극한으로 제어하는 법을 배웠습니다."
-    ]
-  },
-  p4: {
-    id: "p4",
     category: "fullstack",
-    title: "DevFeed : IT 개발 블로그 자동 피드 & 큐레이션",
-    subtitle: "국내외 주요 테크 블로그 RSS 자동 수집, 카테고리 분류 및 뉴스레터 플랫폼",
-    image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1200",
-    tags: ["Next.js 14", "FastAPI", "PostgreSQL", "Tailwind CSS"],
-    github: "https://github.com",
-    demo: "https://devfeed.example.com",
+    title: "PL:UG : 2026-27 프리미어리그 데이터 & 팬 커뮤니티",
+    subtitle: "입문자부터 열혈 팬까지 만족시키는 2026-2027 시즌 데이터 중심 축구 인터랙티브 웹 플랫폼",
+    image: "/projects/plug.png",
+    tags: ["React", "Spring Boot", "Oracle DB", "RESTful API", "Tailwind CSS"],
+    github: "https://github.com/dbqls6746-bot/Team_BuildUp.git",
+    demo: "https://github.com/dbqls6746-bot/Team_BuildUp.git",
     overview: {
-      period: "2022.10 - 2023.01 (4개월)",
-      team: "2인 사이드 프로젝트",
-      role: "백엔드 및 크롤러 개발 (RSS 파싱, DB 정규화, 검색 API 구축)",
-      oneLiner: "매일 수십 곳의 IT 기업 블로그를 자동 수집하여 요약 제공하는 테크 큐레이션 서비스"
+      period: "최종 파이널 프로젝트 (팀 프로젝트)",
+      team: "Team BUILDUP (팀장 최유빈)",
+      role: "팀 프로젝트 총괄 리더 / 풀스택 개발 (아키텍처 설계, RESTful API 표준화, DB 스키마 구축 완주)",
+      oneLiner: "프리미어리그 입문자에게는 PL의 이해를, 팬에게는 재미를 더해주는 2026-2027 시즌 데이터 중점 축구 페이지"
     },
     architecture: {
-      flowDescription: "FastAPI 크롤러가 블로그 피드를 수집하여 PostgreSQL에 저장하고 Next.js ISR을 통해 SEO 최적화된 정적 페이지로 제공합니다.",
+      flowDescription: "React 프론트엔드와 Spring Boot 백엔드가 완전 분리된 RESTful 아키텍처로 구축되었습니다. 20개 구단 엠블럼 인터랙션, 경기 일정/순위, 실시간 승부 예측 및 미니게임, 20개 구단별 커뮤니티를 하나의 유기적인 풀스택 서비스로 제공합니다.",
       flowSteps: [
-        { icon: "fa-rss", label: "Tech RSS", desc: "피드 자동 수집" },
-        { icon: "fa-robot", label: "FastAPI Worker", desc: "본문 정제 및 분류" },
-        { icon: "fa-database", label: "PostgreSQL", desc: "GIN 인덱스 저장" },
-        { icon: "fa-globe", label: "Next.js ISR", desc: "SEO 최적화 서빙" }
+        { icon: "fa-react", label: "React Frontend", desc: "Axios 기반 SPA 비동기 UI" },
+        { icon: "fa-network-wired", label: "RESTful API", desc: "표준 JSON 규격 통신" },
+        { icon: "fa-leaf", label: "Spring Boot", desc: "비즈니스 도메인 서비스" },
+        { icon: "fa-futbol", label: "EPL Match Engine", desc: "경기 일정/순위/승부예측" },
+        { icon: "fa-comments", label: "Club Community", desc: "20개 구단별 전용 게시판" },
+        { icon: "fa-database", label: "Oracle Database", desc: "회원/경기/예측 데이터 영속화" }
       ],
-      erdSummary: "Feeds (1:N) Articles (M:N) Tags. 전문 검색을 위한 GIN 인덱스 적용."
+      erdSummary: "Users (1:N) Predictions (N:1) Matches. Clubs (1:N) CommunityPosts (1:N) Comments. 포인트샵 & 미니게임 트랜잭션."
     },
     keyContributions: [
       {
-        title: "Next.js ISR을 통한 초고속 페이지 로딩 및 SEO 확보",
-        desc: "새 글 발행 시에만 증분 재생성하여 초기 페이지 로딩 0.4초 달성."
+        title: "프론트-백엔드 완전 분리 아키텍처 설계 및 RESTful API 표준화",
+        desc: "React와 Spring Boot 간의 통신 규격을 JSON 표준으로 통일하고, 독립적인 배포 및 개발 환경을 구축했습니다."
+      },
+      {
+        title: "팀 프로젝트 총괄 리더로서 설계부터 배포까지 완주",
+        desc: "프로젝트 킥오프부터 요구사항 정의, WBS 일정 관리, DB 스키마 설계 표준화, 코드 리뷰까지 리더로서 프로젝트를 성공적으로 완주했습니다."
+      },
+      {
+        title: "EPL 20개 구단 인터랙티브 휠 UI 및 비동기 승부예측 시스템 구축",
+        desc: "구단 엠블럼 인터랙티브 휠 선택 UI 및 실시간 포인트 적립 승부예측 로직을 비동기 처리하여 매끄러운 사용자 경험을 완성했습니다."
       }
     ],
     troubleshooting: [
       {
-        problem: "다양한 블로그의 인코딩 불일치 및 상대경로 파싱 에러로 인한 수집 누락",
-        cause: "EUC-KR 인코딩 혼재 및 이미지 태그 상대경로 문제.",
-        solution: "Chardet 인코딩 자동 판별기 및 절대 URL 변환기를 크롤러 전단에 배치.",
-        result: "수집 성공률 81% → 99.8% 달성, 12,000건 이상 안정적 수집."
+        problem: "프론트엔드(React) 개발 서버와 백엔드(Spring Boot) 간 API 통신 시 브라우저 CORS 차단 에러 발생",
+        cause: "서로 다른 포트 및 도메인 출처 간 요청에 대해 백엔드 HTTP Response Header에 CORS 허용 정책 부재.",
+        solution: "Spring Boot WebMvcConfigurer 기반 전역 CORS 허용 매핑(AllowedOrigins, Methods) 설정 및 Axios 인터셉터 구성.",
+        result: "CORS 에러 완전 해소 및 프론트-백엔드 간 원활한 비동기 데이터 통신 보장."
       }
     ],
     retrospective: [
-      "외부 시스템의 불확실성에 대응하는 견고한 예외 방어 로직의 가치를 확인했습니다."
+      "팀장으로서 기술적인 설계뿐만 아니라 팀원 간의 소통과 일정 조율의 중요성을 온몸으로 체득한 프로젝트였습니다.",
+      "프론트엔드와 백엔드를 모두 아우르는 풀스택 엔지니어로서 서비스의 전체 라이프사이클을 주도할 수 있는 역량을 증명했습니다."
     ]
   }
 };
-
