@@ -38,6 +38,7 @@ export default function ProjectModal({ projectId, onClose }) {
 
       {/* Modal Dialog */}
       <div className="relative bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-slate-200 z-10 p-6 sm:p-10 transform transition-all duration-300">
+        {/* Modal Header */}
         <div className="sticky -top-6 sm:-top-10 -mx-6 sm:-mx-10 px-6 sm:px-10 py-4 bg-white/95 backdrop-blur-md border-b border-slate-200 flex items-center justify-between z-30 mb-6">
           <div className="flex items-center gap-2">
             <span className="w-3 h-3 rounded-full bg-brand-600"></span>
@@ -53,6 +54,7 @@ export default function ProjectModal({ projectId, onClose }) {
         </div>
 
         <article className="space-y-10 text-slate-800">
+          {/* Main Info Header */}
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-2">
               <span className="px-2.5 py-1 rounded-md bg-brand-50 text-brand-700 font-bold text-xs">
@@ -66,9 +68,12 @@ export default function ProjectModal({ projectId, onClose }) {
               {p.title}
             </h2>
             <p className="text-sm sm:text-base text-slate-500 mt-2 font-medium">{p.subtitle}</p>
+
+            {/* 16:9 Thumbnail Image */}
             <div className="mt-5 rounded-2xl overflow-hidden aspect-[16/9] bg-slate-100 shadow-md border border-slate-200">
               <img src={p.image} alt={p.title} className="w-full h-full object-cover" />
             </div>
+
             <div className="flex flex-wrap items-center justify-between gap-3 mt-4">
               <div className="flex flex-wrap gap-2">
                 {p.tags.map((t, idx) => (
@@ -93,9 +98,9 @@ export default function ProjectModal({ projectId, onClose }) {
             </div>
           </div>
 
-          {/* 1. 프로젝트 개요 */}
+          {/* 1. 프로젝트 개요 (Overview) */}
           <section className="p-5 sm:p-6 rounded-2xl bg-slate-50/80 border border-slate-200">
-            <h3 className="text-sm sm:text-base font-bold text-brand-900 flex items-center gap-2 mb-4">
+            <h3 className="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2 mb-4">
               <span className="w-6 h-6 rounded-lg bg-brand-900 text-white flex items-center justify-center text-xs font-bold">
                 1
               </span>
@@ -118,36 +123,119 @@ export default function ProjectModal({ projectId, onClose }) {
                 <span className="font-semibold text-slate-400 block text-[11px] uppercase tracking-wider">
                   담당 역할
                 </span>
-                <span className="font-semibold text-brand-700">{p.overview.role}</span>
+                <span className="font-bold text-brand-700">{p.overview.role}</span>
               </div>
               <div className="space-y-1 sm:col-span-2 pt-2 border-t border-slate-200/60">
                 <span className="font-semibold text-slate-400 block text-[11px] uppercase tracking-wider">
-                  서비스 한 줄 설명
+                  서비스 개요
                 </span>
                 <p className="font-medium text-slate-800 leading-relaxed">{p.overview.oneLiner}</p>
               </div>
             </div>
           </section>
 
-          {/* 2. 느낀 점 및 배운 점 */}
-          <section className="p-5 sm:p-6 rounded-2xl bg-blue-50/40 border border-brand-100">
-            <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-4 flex items-center gap-2">
-              <span className="w-6 h-6 rounded-lg bg-brand-900 text-white flex items-center justify-center text-xs font-bold">
-                2
-              </span>
-              느낀 점 및 배운 점 (Learnings &amp; Retrospective)
-            </h3>
-            <ul className="space-y-2.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
-              {p.retrospective.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-2.5">
-                  <i className="fa-solid fa-check text-brand-600 mt-1 text-xs shrink-0"></i>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
+          {/* 2. 담당 역할 및 핵심 개발 기여 (Key Contributions) */}
+          {p.keyContributions && p.keyContributions.length > 0 && (
+            <section className="p-5 sm:p-6 rounded-2xl bg-slate-50/80 border border-slate-200">
+              <h3 className="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2 mb-4">
+                <span className="w-6 h-6 rounded-lg bg-brand-900 text-white flex items-center justify-center text-xs font-bold">
+                  2
+                </span>
+                담당 역할 및 핵심 기여 (Key Contributions)
+              </h3>
+              <div className="space-y-3">
+                {p.keyContributions.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="p-4 rounded-xl bg-white border border-slate-200 shadow-2xs space-y-1.5"
+                  >
+                    <div className="flex items-center gap-2 text-slate-900 font-bold text-xs sm:text-sm">
+                      <i className="fa-solid fa-check-circle text-brand-600"></i>
+                      <h4>{item.title}</h4>
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-6">
+                      {item.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* 3. 트러블슈팅 및 문제 해결 (Troubleshooting) */}
+          {p.troubleshooting && p.troubleshooting.length > 0 && (
+            <section className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200 shadow-2xs">
+              <h3 className="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2 mb-4">
+                <span className="w-6 h-6 rounded-lg bg-brand-900 text-white flex items-center justify-center text-xs font-bold">
+                  3
+                </span>
+                트러블슈팅 및 문제 해결 (Troubleshooting)
+              </h3>
+              <div className="space-y-4">
+                {p.troubleshooting.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3.5 text-xs sm:text-sm"
+                  >
+                    {/* 문제 상황 */}
+                    <div className="flex items-start gap-2.5">
+                      <span className="px-2 py-0.5 rounded-md bg-rose-50 text-rose-700 font-bold text-[11px] shrink-0 border border-rose-200">
+                        문제 상황
+                      </span>
+                      <span className="font-semibold text-slate-800 leading-snug">{item.problem}</span>
+                    </div>
+
+                    {/* 원인 분석 */}
+                    <div className="flex items-start gap-2.5">
+                      <span className="px-2 py-0.5 rounded-md bg-amber-50 text-amber-800 font-bold text-[11px] shrink-0 border border-amber-200">
+                        원인 분석
+                      </span>
+                      <span className="text-slate-600 leading-relaxed">{item.cause}</span>
+                    </div>
+
+                    {/* 해결 방안 */}
+                    <div className="flex items-start gap-2.5">
+                      <span className="px-2 py-0.5 rounded-md bg-blue-50 text-brand-700 font-bold text-[11px] shrink-0 border border-blue-200">
+                        해결 방안
+                      </span>
+                      <span className="text-slate-700 leading-relaxed font-medium">{item.solution}</span>
+                    </div>
+
+                    {/* 결과 및 성과 */}
+                    <div className="flex items-start gap-2.5 pt-2 border-t border-slate-200/70">
+                      <span className="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 font-bold text-[11px] shrink-0 border border-emerald-200">
+                        성과 및 결과
+                      </span>
+                      <span className="text-emerald-800 font-semibold leading-relaxed">{item.result}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* 4. 느낀 점 및 회고 (Learnings & Retrospective) */}
+          {p.retrospective && p.retrospective.length > 0 && (
+            <section className="p-5 sm:p-6 rounded-2xl bg-blue-50/40 border border-brand-100">
+              <h3 className="text-sm sm:text-base font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <span className="w-6 h-6 rounded-lg bg-brand-900 text-white flex items-center justify-center text-xs font-bold">
+                  4
+                </span>
+                느낀 점 및 배운 점 (Learnings &amp; Retrospective)
+              </h3>
+              <ul className="space-y-2.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                {p.retrospective.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2.5">
+                    <i className="fa-solid fa-check text-brand-600 mt-1 text-xs shrink-0"></i>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
         </article>
 
+        {/* Modal Footer */}
         <div className="mt-10 pt-6 border-t border-slate-200 flex items-center justify-between">
           <span className="text-xs text-slate-400">
             키보드{' '}
@@ -167,4 +255,3 @@ export default function ProjectModal({ projectId, onClose }) {
     </div>
   );
 }
-

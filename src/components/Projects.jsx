@@ -24,7 +24,7 @@ export default function Projects({ onOpenModal }) {
         };
       case 'fullstack':
         return {
-          label: 'Fullstack (팀장)',
+          label: 'Fullstack',
           className: 'bg-emerald-50 text-emerald-700 border border-emerald-200/60',
         };
       default:
@@ -64,14 +64,14 @@ export default function Projects({ onOpenModal }) {
               전체
             </button>
             <button
-              onClick={() => setFilter('frontend')}
+              onClick={() => setFilter('fullstack')}
               className={`px-3.5 py-1.5 rounded-lg whitespace-nowrap shrink-0 transition-all ${
-                filter === 'frontend'
+                filter === 'fullstack'
                   ? 'bg-white text-slate-900 font-semibold shadow-xs'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              Frontend
+              Fullstack
             </button>
             <button
               onClick={() => setFilter('backend')}
@@ -84,14 +84,14 @@ export default function Projects({ onOpenModal }) {
               Backend
             </button>
             <button
-              onClick={() => setFilter('fullstack')}
+              onClick={() => setFilter('frontend')}
               className={`px-3.5 py-1.5 rounded-lg whitespace-nowrap shrink-0 transition-all ${
-                filter === 'fullstack'
+                filter === 'frontend'
                   ? 'bg-white text-slate-900 font-semibold shadow-xs'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              Fullstack
+              Frontend
             </button>
           </div>
         </div>
