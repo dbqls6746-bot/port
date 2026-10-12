@@ -23,7 +23,7 @@ export default function About() {
       bgColor: 'bg-emerald-50',
       textColor: 'text-emerald-500',
       icon: 'fa-solid fa-database',
-      title: 'Oracle DB & SQLD',
+      title: 'Oracle DB & SQL',
       desc: '정규화 모델링 & MyBatis 쿼리 설계',
     },
     {
