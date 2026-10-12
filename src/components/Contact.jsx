@@ -16,20 +16,47 @@ export default function Contact({ onCopyEmail, onShowToast }) {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      onShowToast(`${formData.name} 님, 메시지가 성공적으로 전송되었습니다!`);
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/dbqls6746@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          _subject: `[포트폴리오 문의] ${formData.subject} - ${formData.name} 님`,
+          _template: 'table',
+          _captcha: 'false',
+        }),
       });
-    }, 1000);
+
+      const data = await response.json();
+
+      if (response.ok || data.success === 'true' || data.success === true) {
+        onShowToast(`${formData.name} 님, 메시지가 성공적으로 전송되었습니다!`);
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+        });
+      } else {
+        throw new Error(data.message || '전송 실패');
+      }
+    } catch (error) {
+      console.error('메일 전송 실패:', error);
+      onShowToast('전송 중 오류가 발생했습니다. dbqls6746@gmail.com 으로 직접 연락 부탁드립니다.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -64,7 +91,20 @@ export default function Contact({ onCopyEmail, onShowToast }) {
             </div>
 
             <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 shadow-xs space-y-3">
-              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Channels</span>
+              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Channels & Quick Mail</span>
+
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=dbqls6746@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-slate-200/80 hover:border-brand-400 hover:text-brand-600 transition text-xs font-medium text-slate-800"
+              >
+                <div className="flex items-center gap-2.5">
+                  <i className="fa-regular fa-envelope text-base text-brand-600"></i>
+                  <span>Gmail로 바로 작성하기</span>
+                </div>
+                <i className="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i>
+              </a>
 
               <a
                 href="https://github.com/dbqls6746-bot?tab=repositories"

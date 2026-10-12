@@ -58,7 +58,7 @@ export const projectsData = {
     category: "backend",
     title: "RE:DAY : 통합 라이프 리뷰 커뮤니티 플랫폼",
     subtitle: "데일리 일상 총평과 제품·장소 세부 서브 리뷰를 결합하고 제휴 BM을 접목한 차세대 리뷰 커뮤니티",
-    image: "/projects/reday.svg",
+    image: "/projects/reday.png",
     tags: ["Java", "Spring Boot", "Spring MVC", "Oracle DB", "MyBatis"],
     github: "https://github.com/dbqls6746-bot/second-project.git",
     demo: "https://github.com/dbqls6746-bot/second-project.git",
