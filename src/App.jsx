@@ -56,7 +56,7 @@ export default function App() {
     navigator.clipboard
       .writeText(email)
       .then(() => {
-        showToast(`이메일 주소(${email})가 복사되었습니다!`);
+        showToast('이메일 주소가 클립보드에 복사되었습니다!');
       })
       .catch(() => {
         showToast('이메일 복사에 실패했습니다.');

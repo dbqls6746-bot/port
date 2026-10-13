@@ -85,16 +85,32 @@ export default function ProjectModal({ projectId, onClose }) {
                   </span>
                 ))}
               </div>
-              <a
-                href={p.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold shadow-xs transition"
-              >
-                <i className="fa-brands fa-github text-sm"></i>
-                <span>GitHub 저장소 바로가기</span>
-                <i className="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i>
-              </a>
+
+              {/* 액션 버튼 영역 (결과보고서 / GitHub) */}
+              <div className="flex flex-wrap items-center gap-2">
+                {p.reportUrl && (
+                  <a
+                    href={p.reportUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 text-xs font-semibold shadow-2xs transition"
+                  >
+                    <span>📄 결과보고서</span>
+                    <i className="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                  </a>
+                )}
+
+                <a
+                  href={p.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold shadow-xs transition"
+                >
+                  <i className="fa-brands fa-github text-sm"></i>
+                  <span>GitHub 저장소 바로가기</span>
+                  <i className="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i>
+                </a>
+              </div>
             </div>
           </div>
 

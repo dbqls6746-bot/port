@@ -253,7 +253,24 @@ export default function Contact({ onCopyEmail, onShowToast }) {
           </div>
         </div>
 
-        <div className="mt-20 pt-8 border-t border-slate-200 text-center text-xs text-slate-500">
+        {/* 입사 후 포부 배너 */}
+        <div className="mt-12 p-6 sm:p-7 rounded-2xl bg-gradient-to-r from-slate-900 via-brand-900 to-slate-900 text-white shadow-md relative overflow-hidden">
+          <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div className="w-11 h-11 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center shrink-0 text-brand-300">
+              <i className="fa-solid fa-quote-left text-base"></i>
+            </div>
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-brand-300 block mb-1">
+                입사 후 포부 (Commitment &amp; Vision)
+              </span>
+              <p className="text-xs sm:text-sm md:text-base font-medium text-slate-100 leading-relaxed">
+                &ldquo;설비의 작은 결함도 놓치지 않던 현장의 꼼꼼함으로, 데이터 한 줄의 정합성과 서비스의 안정성을 지키는 개발자가 되겠습니다. 언제든 편하게 연락 부탁드립니다.&rdquo;
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-14 pt-8 border-t border-slate-200 text-center text-xs text-slate-500">
           <p>© 2026 Choi Yubin. Built with React, Vite & Tailwind CSS.</p>
         </div>
       </div>

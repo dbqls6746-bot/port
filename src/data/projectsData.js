@@ -8,6 +8,7 @@ export const projectsData = {
     tags: ["React", "Spring Boot", "Oracle DB", "RESTful API", "Tailwind CSS", "MyBatis"],
     github: "https://github.com/dbqls6746-bot/Team_BuildUp.git",
     demo: "https://github.com/dbqls6746-bot/Team_BuildUp.git",
+    reportUrl: "/projects/plug_report.pdf",
     overview: {
       period: "2026.08 ~ 2026.10 (최종 프로젝트)",
       team: "Team BUILDUP (총괄 팀장 최유빈)",
@@ -78,6 +79,7 @@ export const projectsData = {
     tags: ["Java", "Spring Boot", "Oracle DB", "MyBatis", "JSP", "Spring MVC"],
     github: "https://github.com/dbqls6746-bot/second-project.git",
     demo: "https://github.com/dbqls6746-bot/second-project.git",
+    reportUrl: "/projects/reday_report.pdf",
     overview: {
       period: "2026.06 ~ 2026.07 (2차 프로젝트)",
       team: "Team RE:DAY (팀장 최유빈)",
@@ -146,6 +148,7 @@ export const projectsData = {
     tags: ["HTML5", "CSS3", "JavaScript", "Responsive Web", "Flexbox", "Grid"],
     github: "https://github.com/dbqls6746-bot/first-project.git",
     demo: "https://github.com/dbqls6746-bot/first-project.git",
+    reportUrl: "/projects/greenway_report.pdf",
     overview: {
       period: "2026.04 ~ 2026.05 (1차 프로젝트)",
       team: "Team OneCode (팀 프로젝트)",
