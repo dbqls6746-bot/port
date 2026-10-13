@@ -134,28 +134,48 @@ export default function ProjectModal({ projectId, onClose }) {
             </div>
           </section>
 
-          {/* 2. 담당 역할 및 핵심 개발 기여 (Key Contributions) */}
+          {/* 2. 핵심 구현 기능 및 담당 기여 (Key Contributions) */}
           {p.keyContributions && p.keyContributions.length > 0 && (
             <section className="p-5 sm:p-6 rounded-2xl bg-slate-50/80 border border-slate-200">
               <h3 className="text-sm sm:text-base font-bold text-slate-900 flex items-center gap-2 mb-4">
                 <span className="w-6 h-6 rounded-lg bg-brand-900 text-white flex items-center justify-center text-xs font-bold">
                   2
                 </span>
-                담당 역할 및 핵심 기여 (Key Contributions)
+                핵심 구현 기능 및 담당 기여 (Key Contributions)
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-3.5">
                 {p.keyContributions.map((item, idx) => (
                   <div
                     key={idx}
-                    className="p-4 rounded-xl bg-white border border-slate-200 shadow-2xs space-y-1.5"
+                    className="p-4 sm:p-5 rounded-xl bg-white border border-slate-200 shadow-2xs space-y-2.5"
                   >
-                    <div className="flex items-center gap-2 text-slate-900 font-bold text-xs sm:text-sm">
-                      <i className="fa-solid fa-check-circle text-brand-600"></i>
-                      <h4>{item.title}</h4>
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <div className="flex items-center gap-2 text-slate-900 font-bold text-xs sm:text-sm">
+                        <i className="fa-solid fa-check-circle text-brand-600"></i>
+                        <h4>{item.title}</h4>
+                      </div>
+                      {item.badge && (
+                        <span className="px-2.5 py-0.5 rounded-md bg-blue-50 text-brand-700 border border-blue-200/70 text-[11px] font-semibold">
+                          {item.badge}
+                        </span>
+                      )}
                     </div>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-6">
-                      {item.desc}
-                    </p>
+
+                    {item.desc && (
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed pl-6">
+                        {item.desc}
+                      </p>
+                    )}
+
+                    {item.bullets && item.bullets.length > 0 && (
+                      <ul className="space-y-1.5 text-xs sm:text-sm text-slate-600 leading-relaxed pl-6 list-disc list-inside">
+                        {item.bullets.map((bullet, bIdx) => (
+                          <li key={bIdx} className="text-slate-700">
+                            {bullet}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 ))}
               </div>
