@@ -119,47 +119,6 @@ export default function Contact({ onCopyEmail, onShowToast }) {
                 <i className="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i>
               </a>
             </div>
-
-            {/* 이력서 & 자기소개서 다운로드 카드 */}
-            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 shadow-xs space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide flex items-center gap-1.5">
-                  <i className="fa-regular fa-file-pdf text-rose-500 text-sm"></i>
-                  Resume & Cover Letter
-                </span>
-                <span className="text-[10px] px-2 py-0.5 rounded-full bg-rose-50 text-rose-700 border border-rose-200 font-bold">
-                  PDF
-                </span>
-              </div>
-
-              <div>
-                <h4 className="font-bold text-slate-900 text-sm">이력서 및 자기소개서</h4>
-                <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                  학력, 자격사항, 실무 경력 및 성장과정이 담긴 공식 이력서 문서입니다.
-                </p>
-              </div>
-
-              <div className="pt-1 flex items-center gap-2">
-                <a
-                  href="/resume.pdf"
-                  download="최유빈_이력서_자기소개서.pdf"
-                  className="flex-1 py-2.5 px-3 bg-brand-900 hover:bg-brand-800 text-white text-xs font-semibold rounded-xl transition shadow-xs flex items-center justify-center gap-1.5 group"
-                >
-                  <i className="fa-solid fa-download text-xs group-hover:translate-y-0.5 transition-transform"></i>
-                  <span>다운로드</span>
-                </a>
-                <a
-                  href="/resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="py-2.5 px-3 bg-white hover:bg-slate-100 border border-slate-300 text-slate-700 hover:text-slate-900 text-xs font-semibold rounded-xl transition flex items-center justify-center gap-1 shadow-2xs"
-                  title="새 창에서 미리보기"
-                >
-                  <i className="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i>
-                  <span>미리보기</span>
-                </a>
-              </div>
-            </div>
           </div>
 
           <div className="md:col-span-3 bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-xs">
