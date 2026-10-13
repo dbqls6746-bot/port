@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Sidebar({ activeSection, onCopyEmail }) {
+export default function Sidebar({ activeSection, onNavigate, onCopyEmail }) {
   const navItems = [
     { id: 'home', label: 'Home', icon: 'fa-house' },
     { id: 'about', label: 'About Me', icon: 'fa-user' },
@@ -42,11 +42,18 @@ export default function Sidebar({ activeSection, onCopyEmail }) {
                 <li key={item.id}>
                   <a
                     href={`#${item.id}`}
-                    className={`nav-link flex items-center gap-3 px-3 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-all ${
-                      isActive ? 'active' : ''
+                    onClick={(e) => onNavigate && onNavigate(e, item.id)}
+                    className={`nav-link flex items-center gap-3 px-3 py-2.5 text-sm rounded-lg transition-all ${
+                      isActive
+                        ? 'active text-brand-600 bg-brand-50 font-bold'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50 font-medium'
                     }`}
                   >
-                    <i className={`fa-solid ${item.icon} w-5 text-center text-slate-400`}></i>
+                    <i
+                      className={`fa-solid ${item.icon} w-5 text-center transition-colors ${
+                        isActive ? 'text-brand-600' : 'text-slate-400'
+                      }`}
+                    ></i>
                     <span>{item.label}</span>
                   </a>
                 </li>
@@ -84,4 +91,3 @@ export default function Sidebar({ activeSection, onCopyEmail }) {
     </aside>
   );
 }
-

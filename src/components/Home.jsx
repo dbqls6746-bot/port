@@ -26,7 +26,7 @@ const statsItems = [
   },
 ];
 
-export default function Home() {
+export default function Home({ onNavigate }) {
   const [displayText, setDisplayText] = useState('');
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -80,6 +80,7 @@ export default function Home() {
         <div className="flex flex-wrap items-center justify-center gap-3 mt-4">
           <a
             href="#projects"
+            onClick={(e) => onNavigate && onNavigate(e, 'projects')}
             className="px-5 py-2.5 rounded-xl bg-brand-900 hover:bg-brand-800 text-white text-xs sm:text-sm font-semibold shadow-sm hover:shadow transition flex items-center gap-2"
           >
             <i className="fa-solid fa-laptop-code text-xs"></i>
@@ -87,6 +88,7 @@ export default function Home() {
           </a>
           <a
             href="#contact"
+            onClick={(e) => onNavigate && onNavigate(e, 'contact')}
             className="px-5 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 hover:text-brand-600 border border-slate-300 text-xs sm:text-sm font-semibold shadow-2xs transition flex items-center gap-2"
           >
             <i className="fa-regular fa-paper-plane text-xs"></i>
@@ -119,6 +121,7 @@ export default function Home() {
 
       <a
         href="#about"
+        onClick={(e) => onNavigate && onNavigate(e, 'about')}
         className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-slate-400 hover:text-brand-600 transition-colors group"
         aria-label="About Me 섹션으로 이동"
       >

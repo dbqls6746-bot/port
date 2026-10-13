@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function Header() {
+export default function Header({ activeSection, onNavigate }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = (open) => {
@@ -12,20 +12,31 @@ export default function Header() {
     }
   };
 
+  const handleLinkClick = (e, id) => {
+    toggleMenu(false);
+    if (onNavigate) {
+      onNavigate(e, id);
+    }
+  };
+
   const navItems = [
-    { href: '#home', label: 'Home', icon: 'fa-house' },
-    { href: '#about', label: 'About Me', icon: 'fa-user' },
-    { href: '#skills', label: 'Skills', icon: 'fa-layer-group' },
-    { href: '#projects', label: 'Projects', icon: 'fa-laptop-code' },
-    { href: '#experience', label: 'Experience & Edu', icon: 'fa-timeline' },
-    { href: '#contact', label: 'Contact', icon: 'fa-envelope' },
+    { id: 'home', label: 'Home', icon: 'fa-house' },
+    { id: 'about', label: 'About Me', icon: 'fa-user' },
+    { id: 'skills', label: 'Skills', icon: 'fa-layer-group' },
+    { id: 'projects', label: 'Projects', icon: 'fa-laptop-code' },
+    { id: 'experience', label: 'Experience & Edu', icon: 'fa-timeline' },
+    { id: 'contact', label: 'Contact', icon: 'fa-envelope' },
   ];
 
   return (
     <>
       {/* 모바일 상단 고정 헤더 */}
       <header className="lg:hidden sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 px-4 py-3 flex items-center justify-between shadow-sm">
-        <a href="#home" className="flex items-center gap-2.5">
+        <a
+          href="#home"
+          onClick={(e) => onNavigate && onNavigate(e, 'home')}
+          className="flex items-center gap-2.5"
+        >
           <img
             src="/favicon.png"
             alt="YB 로고"
@@ -71,24 +82,35 @@ export default function Header() {
             </button>
           </div>
           <ul className="mt-6 space-y-2">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  onClick={() => toggleMenu(false)}
-                  className="flex items-center gap-3 px-3 py-2.5 text-slate-700 hover:bg-slate-100 rounded-lg font-medium transition"
-                >
-                  <i className={`fa-solid ${item.icon} w-5 text-slate-400`}></i>
-                  {item.label}
-                </a>
-              </li>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <li key={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    onClick={(e) => handleLinkClick(e, item.id)}
+                    className={`nav-link flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
+                      isActive
+                        ? 'active text-brand-600 bg-brand-50 font-bold'
+                        : 'text-slate-700 hover:bg-slate-100 font-medium'
+                    }`}
+                  >
+                    <i
+                      className={`fa-solid ${item.icon} w-5 text-center ${
+                        isActive ? 'text-brand-600' : 'text-slate-400'
+                      }`}
+                    ></i>
+                    <span>{item.label}</span>
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </div>
         <div className="pt-6 border-t border-slate-100 text-center">
           <a
             href="#contact"
-            onClick={() => toggleMenu(false)}
+            onClick={(e) => handleLinkClick(e, 'contact')}
             className="w-full inline-block py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-lg font-medium text-sm transition shadow-sm"
           >
             연락하기
@@ -98,4 +120,3 @@ export default function Header() {
     </>
   );
 }
-
