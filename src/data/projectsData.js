@@ -10,9 +10,9 @@ export const projectsData = {
     demo: "https://github.com/dbqls6746-bot/Team_BuildUp.git",
     reportUrl: "/projects/plug_report.pdf",
     overview: {
-      period: "2026.08 ~ 2026.10 (최종 프로젝트)",
-      team: "Team BUILDUP (총괄 팀장 최유빈)",
-      role: "총괄 팀장 & 풀스택 개발 (PM/산출물 총괄, 메인, 팀·20개 구단 소개, 선수 스탯 모달, 포인트샵, 퀵 밸런스게임)",
+      period: "2026.09.14 ~ 2026.10.08 (약 4주 / 25일)",
+      team: "BUILDUP",
+      role: "팀장 & 풀스택 개발 (PM/산출물 총괄, 메인, 팀·20개 구단 소개, 선수 스탯 모달, 포인트샵, 퀵 밸런스게임)",
       oneLiner: "프리미어리그 입문자에게는 PL의 이해를, 팬에게는 재미를 추가시켜주고 두 가지 니즈를 충족시키는 2026-2027 시즌 데이터 중점 프리미어리그 페이지"
     },
     architecture: {
@@ -29,7 +29,7 @@ export const projectsData = {
     },
     keyContributions: [
       {
-        title: "총괄 팀장 리더십 및 프로젝트 산출물·문서화 총괄",
+        title: "팀장 리더십 및 프로젝트 산출물·문서화 총괄",
         badge: "PM & 문서화 총괄",
         bullets: [
           "프로젝트 전체 작업 일정 조율, 팀원 역량별 작업량 분배 및 지속적인 팀원 동기부여 리딩",
@@ -65,7 +65,7 @@ export const projectsData = {
       }
     ],
     retrospective: [
-      "총괄 팀장으로서 WBS, 요구사항 명세서, 테스트 케이스, 결과보고서까지 전 과정을 문서화하고 팀원들의 일정을 조율하며 프로젝트 매니징 역량을 크게 길렀습니다.",
+      "팀장으로서 WBS, 요구사항 명세서, 테스트 케이스, 결과보고서까지 전 과정을 문서화하고 팀원들의 일정을 조율하며 프로젝트 매니징 역량을 크게 길렀습니다.",
       "20개 구단 데이터와 포인트샵 테이블 모델링부터 React UI 및 모달 인터랙션까지 프론트와 백엔드를 아우르는 풀스택 개발의 전 과정을 주도적으로 완주했습니다.",
       "외부 API 의존성이 높은 환경에서 멀티 API 다중화와 DTO 어댑터 정규화를 통해 시스템 안정성을 확보하는 실전 아키텍처 설계를 경험했습니다."
     ]
@@ -81,8 +81,8 @@ export const projectsData = {
     demo: "https://github.com/dbqls6746-bot/second-project.git",
     reportUrl: "/projects/reday_report.pdf",
     overview: {
-      period: "2026.06 ~ 2026.07 (2차 프로젝트)",
-      team: "Team RE:DAY (팀장 최유빈)",
+      period: "2026.08.20 ~ 2026.09.08 (약 3주 / 20일)",
+      team: "RE:DAY",
       role: "팀장 & 풀스택 개발 (PM/일정·영상 총괄, 메인·탐색 프론트엔드, 평점 통계 풀스택, 응원하기, 공개/비공개 제어)",
       oneLiner: "일상 기록(데일리 총평)에 제품·장소 등의 세부 경험(서브 리뷰)과 수익형 제휴 BM을 결합한 통합 라이프 리뷰 커뮤니티"
     },
@@ -150,8 +150,8 @@ export const projectsData = {
     demo: "https://github.com/dbqls6746-bot/first-project.git",
     reportUrl: "/projects/greenway_report.pdf",
     overview: {
-      period: "2026.04 ~ 2026.05 (1차 프로젝트)",
-      team: "Team OneCode (팀 프로젝트)",
+      period: "2026.06.19 ~ 2026.07.03 (약 2주 / 15일)",
+      team: "OneCode",
       role: "프론트엔드 퍼블리싱 & 기능 구현 (산책로 UI, 길 찾기, 평가/후기 댓글/즐겨찾기/공유, 유스케이스·TC·시연 영상)",
       oneLiner: "전자기기에 의존해 살아가는 현대인들을 산책시키고자하는 목적으로 제작한 산책로/공원 소개 페이지"
     },

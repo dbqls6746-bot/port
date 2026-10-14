@@ -74,7 +74,7 @@ export default function Experience() {
         <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-3">
           경력 및 교육 이력
         </h2>
-        <p className="text-slate-600 text-sm mb-12 max-w-xl">
+        <p className="text-slate-600 text-sm mb-12 sm:whitespace-nowrap">
           하드웨어 현장 실무부터 공학 학사 과정, 소프트웨어 풀스택 역량 강화까지의 시간 역순 성장 타임라인입니다.
         </p>
 

@@ -74,7 +74,8 @@ export default function ProjectModal({ projectId, onClose }) {
               <img src={p.image} alt={p.title} className="w-full h-full object-cover" />
             </div>
 
-            <div className="flex flex-wrap items-center justify-between gap-3 mt-4">
+            <div className="mt-4 space-y-3">
+              {/* 기술 태그 목록 */}
               <div className="flex flex-wrap gap-2">
                 {p.tags.map((t, idx) => (
                   <span
@@ -86,8 +87,8 @@ export default function ProjectModal({ projectId, onClose }) {
                 ))}
               </div>
 
-              {/* 액션 버튼 영역 (결과보고서 / GitHub) */}
-              <div className="flex flex-wrap items-center gap-2">
+              {/* 액션 버튼 영역 (결과보고서 / GitHub) - 모든 프로젝트에서 PL:UG와 동일하게 안정적인 위치 유지 */}
+              <div className="flex flex-wrap items-center gap-2.5 pt-1">
                 {p.reportUrl && (
                   <a
                     href={p.reportUrl}
@@ -131,7 +132,7 @@ export default function ProjectModal({ projectId, onClose }) {
               </div>
               <div className="space-y-1">
                 <span className="font-semibold text-slate-400 block text-[11px] uppercase tracking-wider">
-                  팀 구성
+                  팀 이름
                 </span>
                 <span className="font-medium text-slate-800">{p.overview.team}</span>
               </div>
