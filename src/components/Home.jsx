@@ -39,21 +39,21 @@ export default function Home({ onNavigate }) {
       if (displayText.length < currentPhrase.length) {
         timer = setTimeout(() => {
           setDisplayText(currentPhrase.slice(0, displayText.length + 1));
-        }, 80);
+        }, 50);
       } else {
         timer = setTimeout(() => {
           setIsDeleting(true);
-        }, 2200);
+        }, 3200);
       }
     } else {
       if (displayText.length > 0) {
         timer = setTimeout(() => {
           setDisplayText(currentPhrase.slice(0, displayText.length - 1));
-        }, 35);
+        }, 20);
       } else {
         setIsDeleting(false);
         setPhraseIndex((prev) => (prev + 1) % heroPhrases.length);
-        timer = setTimeout(() => {}, 400);
+        timer = setTimeout(() => {}, 300);
       }
     }
 
@@ -92,7 +92,7 @@ export default function Home({ onNavigate }) {
             className="px-5 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 hover:text-brand-600 border border-slate-300 text-xs sm:text-sm font-semibold shadow-2xs transition flex items-center gap-2"
           >
             <i className="fa-regular fa-paper-plane text-xs"></i>
-            <span>연락하기 &amp; 이력서</span>
+            <span>연락하기</span>
           </a>
         </div>
 
