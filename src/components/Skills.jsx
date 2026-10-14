@@ -4,7 +4,7 @@ export default function Skills() {
   const skillCategories = [
     {
       category: 'Backend',
-      subTitle: 'Java & Spring Boot',
+      subTitle: 'Java & Spring Framework',
       icon: 'fa-brands fa-java',
       iconBg: 'bg-brand-900 text-white group-hover:bg-brand-600',
       hoverBorder: 'hover:border-brand-500',
@@ -20,15 +20,15 @@ export default function Skills() {
           desc: '객체지향 원칙을 준수한 Controller - Service - Repository 계층형 아키텍처 설계',
         },
         {
-          label: 'Spring Boot',
-          desc: 'RESTful API 엔드포인트 구축 및 @RestControllerAdvice 기반 표준 예외 규격화',
+          label: 'Spring Framework',
+          desc: 'Spring MVC 기반 웹 애플리케이션 구조 설계 및 IoC/DI를 활용한 계층 간 결합도 완화',
         },
         {
           label: '보안/인증',
           desc: 'Spring Security 기반 사용자 인증·인가 및 세션 상태 제어',
         },
       ],
-      tags: ['#Java', '#SpringBoot', '#REST_API', '#Security'],
+      tags: ['#Java', '#SpringFramework', '#REST_API', '#Security'],
     },
     {
       category: 'Database',
@@ -56,7 +56,7 @@ export default function Skills() {
           desc: '데이터베이스 트랜잭션 원리와 인덱스 기본 구조에 대한 깊은 이해',
         },
       ],
-      tags: ['#Oracle', '#MyBatis', '#SQL', '#ERD_Modeling'],
+      tags: ['#Oracle DB', '#MyBatis', '#SQL', '#ERD_Modeling'],
     },
     {
       category: 'Frontend',
