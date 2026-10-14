@@ -44,7 +44,7 @@ export default function About() {
           <i className="fa-regular fa-circle-dot"></i> ABOUT ME
         </div>
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight mb-8">
-          &ldquo;전기에 접목하고자 시작한 풀스택 개발&rdquo;
+          '전기'에 접목하고자 시작한 '풀스택 개발'
         </h2>
 
         {/* 소개 본문 (전체 너비) */}
