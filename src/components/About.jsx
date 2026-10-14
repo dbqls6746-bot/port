@@ -67,8 +67,7 @@ export default function About() {
           </p>
           <p>
             그 호기심을 계기로 프로그래밍에 뛰어들었습니다.{' '}
-            <strong className="text-slate-900 font-semibold">Java와 Spring Boot</strong>를 학습하며 데이터가
-            Controller와 Service를 거쳐 DB로 흐르는 메커니즘을 체득했고, 화면과 서버가 유기적으로 맞물려
+            <strong className="text-slate-900 font-semibold">Java와 Spring Framework</strong>를 학습하며 MVC 패턴 구조를 기반으로 Controller, Service 등 핵심 로직 레이어를 구분해서 적용하여 DB로 연결하는 방식을 체득했고, 화면과 서버가 유기적으로 맞물려
             돌아가는 것에 깊은 흥미를 느꼈습니다. 전기 분야의 기초 지식을 더 깊이 다지고 성장시키고자{' '}
             <strong className="text-slate-900 font-semibold">한양사이버대학교 전기전자통신공학부</strong>에
             진학하여 학업과 개발을 병행하고 있으며, 학원에서의{' '}
